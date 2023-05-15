@@ -43,6 +43,7 @@
   grid-area: button;
   place-self: center;
   font-size: 4rem;
+  visibility: hidden;
 }
 .passport-image-snapshot:not([src]) {
   display: none;
@@ -93,6 +94,9 @@
 .passport-stamp-tool img {
   width: 10rem;
 }
+.is-stamp-held .passport-stamp-tool {
+  cursor: none;
+}
 .passport-stamp-image {
   position: absolute;
   top: 0;
@@ -102,4 +106,17 @@
 }
 .passport-stamp-image img {
   width: 10rem;
+}
+.passport-stamp-placeholder {
+  display: none;
+  position: absolute;
+  left: 4rem;
+  bottom: 5rem;
+  width: 9.2rem;
+  height: 9.2rem;
+  border: 0.25rem dashed rgb(0 0 0 / .4);
+  border-radius: 50%;
+}
+.is-stamp-held .passport-stamp-placeholder {
+  display: block;
 }

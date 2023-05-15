@@ -22,6 +22,7 @@ let isStampHeld = false;
 passportImageContainer.style.cursor = 'pointer';
 passportImageContainer.addEventListener('click', initVideo);
 captureButton.addEventListener('click', handleCapture);
+document.addEventListener('keyup', handleCapture);
 continueButton.addEventListener('click', handleContinue);
 stampTool.addEventListener('click', handleStampPickup);
 
@@ -180,6 +181,8 @@ function clearSnapshotImageData() {
 //
 function handleStampPickup(event) {
   if (isStampHeld) {
+    isStampHeld = false;
+    passportPageCover.classList.remove('is-stamp-held');
     // Place stamp
     stampImage.style.transform = '';
     const currentStampPosition = stampImage.getBoundingClientRect();
@@ -189,7 +192,6 @@ function handleStampPickup(event) {
     stampImage.style.transform = `translate(-15%, -85%) translate(${left}px, ${top}px)`;
     stampImage.style.opacity = '1';
     // Reset stamp tool
-    isStampHeld = false;
     document.removeEventListener('mousemove', handleStampMove);
     playStampReturnAnimation().then(() => {
       stampTool.style.transform = '';
@@ -197,6 +199,7 @@ function handleStampPickup(event) {
   }
   else {
     isStampHeld = true;
+    passportPageCover.classList.add('is-stamp-held');
     const boundingRect = stampTool.getBoundingClientRect();
     // Where on the stamp tool the user clicked
     const clickOffsetTop = boundingRect.top - event.pageY;

@@ -27,7 +27,6 @@ button {
   --page-ratio: 1.414213562373;
   height: var(--page-height);
   width: calc(var(--page-height) / var(--page-ratio));
-  background: #eee;
 }
 .passport-page-background {
   position: absolute;
