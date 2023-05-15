@@ -1,8 +1,8 @@
 .passport-page-cover {
-  padding: 10rem 0 0 0;
+  padding: 21rem 0 0 0;
   display: grid;
-  grid-auto-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-auto-columns: 1fr 24rem 1fr;
+  grid-template-rows: 24rem 1fr 1fr;
   gap: 0 0;
   grid-template-areas:
     '. photo button'
@@ -15,11 +15,13 @@
   position: relative;
   grid-area: photo;
   place-self: center;
-  width: 150%;
+  width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
-  transform: scaleX(-100%);
-  background: rgba(0, 0, 0, .15);
+  /* aspect-ratio: 4 / 3; */
+  aspect-ratio: 1;
+  transform: translateX(-0.6rem) scaleX(-100%) scale(98%);
+  border-radius: 50%;
+  overflow: hidden;
 }
 .passport-image-container > * {
   pointer-events: none;
@@ -32,13 +34,12 @@
   object-fit: cover;
 }
 .passport-image-live {
-  background: rgba(0, 0, 0, .15);
 }
 .passport-image-snapshot {
-  background: rgba(0, 0, 0, .15);
   border: 0;
 }
 .passport-image-button {
+  position: relative;
   grid-area: button;
   place-self: center;
   font-size: 4rem;
@@ -59,14 +60,46 @@
 }
 /* Name */
 .passport-name-input {
+  position: relative;
   grid-area: name;
   place-self: center;
-  font-size: 2.1rem;
+  width: 28rem;
+  width: 40rem;
+  padding: 0.5rem;
+  border: 0;
+  color: #555;
+  font-size: 3rem;
+  background: rgba(0, 0, 0, 0);
   text-align: center;
-  padding: 1.2rem;
+  outline: none !important;
+  transform: translate(-0.4rem, -2.8rem);
+}
+.passport-name-input:focus {
+  background: rgba(50, 50, 0, .03);
 }
 /* Continue button */
 .passport-page-cover .continue-button {
+  position: relative;
   grid-area: continue;
   place-self: center;
+}
+/* Stamping */
+.passport-stamp-tool {
+  position: absolute;
+  top: 10rem;
+  left: calc(100% + 4rem);
+  cursor: grab;
+}
+.passport-stamp-tool img {
+  width: 10rem;
+}
+.passport-stamp-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.passport-stamp-image img {
+  width: 10rem;
 }

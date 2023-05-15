@@ -1,6 +1,7 @@
 const passportPageCover = document.querySelector('.passport-page-cover');
 const passportPageAgelimit = document.querySelector('.passport-page-agelimit');
 const continueButton = document.querySelector('.passport-page-cover .continue-button');
+
 const passportImageContainer = document.querySelector('.passport-image-container');
 const videoElement = document.querySelector('.passport-image-live');
 const snapshotElement = document.querySelector('.passport-image-snapshot');
@@ -8,15 +9,21 @@ const flashEffectElement = document.querySelector('.passport-image-flash');
 const captureButton = document.querySelector('.passport-image-button');
 const offscreenCanvas = document.createElement('canvas');
 
+const stampTool = document.querySelector('.passport-stamp-tool');
+const stampImage = document.querySelector('.passport-stamp-image');
+
 const videoWidth = 1024;
 let videoHeight = 0;
 let videoTrack;
 let videoPauseTimeout;
 
+let isStampHeld = false;
+
 passportImageContainer.style.cursor = 'pointer';
 passportImageContainer.addEventListener('click', initVideo);
 captureButton.addEventListener('click', handleCapture);
 continueButton.addEventListener('click', handleContinue);
+stampTool.addEventListener('click', handleStampPickup);
 
 //
 // Page transitions
@@ -36,6 +43,7 @@ passportPageCover._passport = {
 function handleContinue() {
   passportPageCover._passport.exit();
   passportPageAgelimit._passport.enter();
+  history.pushState({page: 'cover'}, '');
 }
 
 //
@@ -47,7 +55,7 @@ function handleCapture(event) {
   if (isKeyEvent && event.key !== SPACEBAR_KEY) {
     return;
   }
-  if (passportPageElement.classList.contains('is-live')) {
+  if (passportPageCover.classList.contains('is-live')) {
     capturePhoto();
   }
   else {
@@ -58,7 +66,7 @@ function capturePhoto() {
   playFlashEffect();
   videoElement.pause();
   captureSnaposhotImageData();
-  passportPageElement.classList.remove('is-live');
+  passportPageCover.classList.remove('is-live');
   clearTimeout(videoPauseTimeout);
   videoPauseTimeout = setTimeout(() => {
     videoTrack.enabled = false;
@@ -69,7 +77,7 @@ function clearPhoto() {
   videoElement.play();
   videoTrack.enabled = true;
   unpauseEffectPromise.then(() => {
-    passportPageElement.classList.add('is-live');
+    passportPageCover.classList.add('is-live');
     clearSnapshotImageData();
   });
 }
@@ -118,7 +126,7 @@ function initVideo() {
   captureButton.style.display = '';
   passportImageContainer.style.cursor = '';
   passportImageContainer.removeEventListener('click', initVideo);
-  passportPageElement.classList.add('is-live');
+  passportPageCover.classList.add('is-live');
   navigator.mediaDevices.getUserMedia({
     audio: false,
     video: {
@@ -129,7 +137,6 @@ function initVideo() {
     videoElement.srcObject = stream;
     videoElement.play();
     videoTrack = stream.getTracks()[0];
-    window.foo = videoTrack;
   })
   .catch(err => {
     console.error(`An error occurred: ${err}`);
@@ -166,4 +173,65 @@ function clearSnapshotImageData() {
   context.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
   const data = offscreenCanvas.toDataURL('image/png');
   snapshotElement.setAttribute('src', data);
+}
+
+//
+// Stamping
+//
+function handleStampPickup(event) {
+  if (isStampHeld) {
+    // Place stamp
+    stampImage.style.transform = '';
+    // const currentStampPosition = stampImage.getBoundingClientRect();
+    // const stampToolPosition = stampTool.getBoundingClientRect();
+    // const toolOffsetTop = stampToolPosition.top - event.pageY;
+    // const toolOffsetLeft = stampToolPosition.left - event.pageX;
+    // const top = stampToolPosition.top - toolOffsetTop - currentStampPosition.top;
+    // const left = stampToolPosition.left - toolOffsetLeft - currentStampPosition.left;
+    // stampImage.style.transform = `translate(-50%, -50%) translate(${left}px, ${top}px)`;
+    // stampImage.style.opacity = '1';
+    const currentStampPosition = stampImage.getBoundingClientRect();
+    const stampToolPosition = stampTool.getBoundingClientRect();
+    const top = stampToolPosition.bottom - currentStampPosition.top;
+    const left = stampToolPosition.left - currentStampPosition.left;
+    stampImage.style.transform = `translate(-15%, -85%) translate(${left}px, ${top}px)`;
+    stampImage.style.opacity = '1';
+    // Reset stamp tool
+    isStampHeld = false;
+    document.removeEventListener('mousemove', handleStampMove);
+    playStampReturnAnimation().then(() => {
+      stampTool.style.transform = '';
+    });
+  }
+  else {
+    isStampHeld = true;
+    const boundingRect = stampTool.getBoundingClientRect();
+    // Where on the stamp tool the user clicked
+    const clickOffsetTop = boundingRect.top - event.pageY;
+    const clickOffsetLeft = boundingRect.left - event.pageX;
+    stampTool._initialPosition = {
+      top: boundingRect.top - clickOffsetTop,
+      left: boundingRect.left - clickOffsetLeft,
+    };
+    document.addEventListener('mousemove', handleStampMove);
+  }
+}
+function handleStampMove(event) {
+  const top = event.pageY - stampTool._initialPosition.top;
+  const left = event.pageX - stampTool._initialPosition.left;
+  stampTool.style.transform = `translate(${left}px, ${top}px)`;
+}
+let stampReturnAnimation;
+function playStampReturnAnimation() {
+  if (stampReturnAnimation !== undefined) {
+    stampReturnAnimation.cancel();
+  }
+  stampReturnAnimation = stampTool.animate(
+    [
+      {transform: stampTool.style.transform, easing: 'ease-out'},
+      {transform: 'translate(0, 0)'},
+    ],
+    {duration: 300},
+  );
+  return stampReturnAnimation.finished;
 }

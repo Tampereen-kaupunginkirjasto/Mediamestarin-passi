@@ -20,6 +20,7 @@ button {
 }
 
 .passport-page {
+  position: relative;
   --page-margin: 4rem;
   --page-height: calc(100vh - var(--page-margin) * 2);
   /* A4 page ratio approximately */
@@ -27,11 +28,19 @@ button {
   height: var(--page-height);
   width: calc(var(--page-height) / var(--page-ratio));
   background: #eee;
-  border-radius: 6rem;
+}
+.passport-page-background {
+  position: absolute;
+  left: -2.5rem;
+  top: -0.5rem;
+  width: calc(100% + 4rem);
+  pointer-events: none;
 }
 .continue-button {
   border: 0;
   background: transparent;
-  font-size: 5rem;
-  color: #888;
+  transform: translate(-2rem, -0.5rem);
+}
+.continue-button img {
+  width: 10rem;
 }

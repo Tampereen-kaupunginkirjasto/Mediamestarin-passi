@@ -6,10 +6,14 @@
     <title>Mediamestarin passi</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/passport-page-cover.css" rel="stylesheet">
+    <link href="css/passport-page-agelimit.css" rel="stylesheet">
+    <link href="css/passport-page-marketing.css" rel="stylesheet">
+    <link href="css/passport-page-screentime.css" rel="stylesheet">
   </head>
   <body>
     <!-- Page: Cover -->
     <div class="passport-page passport-page-cover">
+      <img class="passport-page-background" src="assets/passport-page-cover.png">
       <div class="passport-image-container">
         <img class="passport-image-snapshot"></img>
         <video class="passport-image-live"></video>
@@ -17,25 +21,39 @@
       </div>
       <button class="passport-image-button" style="display: none;">📷</button>
       <input class="passport-name-input">
-      <button class="continue-button">→</button>
+      <button class="continue-button">
+        <img src="assets/arrow-forward.png">
+      </button>
+      <div class="passport-stamp-image">
+        <img src="assets/stamp-image.png">
+      </div>
+      <div class="passport-stamp-tool">
+        <img src="assets/stamp-tool.png">
+      </div>
     </div>
 
     <!-- Page: Age limits or content ratings -->
     <div class="passport-page passport-page-agelimit" style="display: none;">
-      <h2>2</h2>
-      <button class="continue-button">→</button>
+      <img class="passport-page-background" src="assets/passport-page-agelimit.png">
+      <button class="continue-button">
+        <img src="assets/arrow-forward.png">
+      </button>
     </div>
 
     <!-- Page: Marketing and advertising -->
     <div class="passport-page passport-page-marketing" style="display: none;">
-      <h2>3</h2>
-      <button class="continue-button">→</button>
+      <img class="passport-page-background" src="assets/passport-page-marketing.png">
+      <button class="continue-button">
+        <img src="assets/arrow-forward.png">
+      </button>
     </div>
 
     <!-- Page: Screen time agreement -->
     <div class="passport-page passport-page-screentime" style="display: none;">
-      <h2>4</h2>
-      <button class="continue-button">→</button>
+      <img class="passport-page-background" src="assets/passport-page-screentime.png">
+      <button class="continue-button">
+        <img src="assets/arrow-forward.png">
+      </button>
     </div>
 
     <script type="module" src="js/passport-page-cover.js"></script>
