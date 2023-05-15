@@ -185,11 +185,12 @@ function handleStampPickup(event) {
     passportPageCover.classList.remove('is-stamp-held');
     // Place stamp
     stampImage.style.transform = '';
-    const currentStampPosition = stampImage.getBoundingClientRect();
     const stampToolPosition = stampTool.getBoundingClientRect();
-    const top = stampToolPosition.bottom - currentStampPosition.top;
-    const left = stampToolPosition.left - currentStampPosition.left;
-    stampImage.style.transform = `translate(-15%, -85%) translate(${left}px, ${top}px)`;
+    const containerDimensions = passportPageCover.getBoundingClientRect();
+    const top = stampToolPosition.bottom - containerDimensions.top;
+    const left = stampToolPosition.left - containerDimensions.left;
+    stampImage.style.top = `${top / containerDimensions.height * 100}%`;
+    stampImage.style.left = `${left / containerDimensions.width * 100}%`;
     stampImage.style.opacity = '1';
     // Reset stamp tool
     document.removeEventListener('mousemove', handleStampMove);

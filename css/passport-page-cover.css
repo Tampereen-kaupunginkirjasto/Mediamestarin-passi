@@ -19,7 +19,12 @@
   height: auto;
   /* aspect-ratio: 4 / 3; */
   aspect-ratio: 1;
-  transform: translateX(-0.6rem) scaleX(-100%) scale(98%);
+  transform:
+    /* Position fine tuning */
+    translateX(-0.6rem) scale(98%)
+    /* Front-facing camera mirroring */
+    scaleX(-100%)
+  ;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -101,6 +106,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  transform: translate(-25%, -75%);
   opacity: 0;
   pointer-events: none;
 }
