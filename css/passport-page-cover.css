@@ -69,13 +69,13 @@
   border: 0;
   color: #555;
   font-size: 3rem;
-  background: rgba(0, 0, 0, 0);
+  background: rgb(0, 0, 0 / 0);
   text-align: center;
   outline: none !important;
   transform: translate(-0.4rem, -2.8rem);
 }
 .passport-name-input:focus {
-  background: rgba(50, 50, 0, .03);
+  background: rgb(50, 50, 0 / .03);
 }
 /* Continue button */
 .passport-page-cover .continue-button {
