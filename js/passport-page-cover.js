@@ -182,14 +182,6 @@ function handleStampPickup(event) {
   if (isStampHeld) {
     // Place stamp
     stampImage.style.transform = '';
-    // const currentStampPosition = stampImage.getBoundingClientRect();
-    // const stampToolPosition = stampTool.getBoundingClientRect();
-    // const toolOffsetTop = stampToolPosition.top - event.pageY;
-    // const toolOffsetLeft = stampToolPosition.left - event.pageX;
-    // const top = stampToolPosition.top - toolOffsetTop - currentStampPosition.top;
-    // const left = stampToolPosition.left - toolOffsetLeft - currentStampPosition.left;
-    // stampImage.style.transform = `translate(-50%, -50%) translate(${left}px, ${top}px)`;
-    // stampImage.style.opacity = '1';
     const currentStampPosition = stampImage.getBoundingClientRect();
     const stampToolPosition = stampTool.getBoundingClientRect();
     const top = stampToolPosition.bottom - currentStampPosition.top;
