@@ -98,6 +98,7 @@
 }
 .passport-stamp-tool img {
   width: 10rem;
+  user-select: none;
 }
 .is-stamp-held .passport-stamp-tool {
   cursor: none;

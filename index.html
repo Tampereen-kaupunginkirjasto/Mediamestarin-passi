@@ -9,6 +9,26 @@
     <link href="css/passport-page-agelimit.css" rel="stylesheet">
     <link href="css/passport-page-marketing.css" rel="stylesheet">
     <link href="css/passport-page-screentime.css" rel="stylesheet">
+    <link rel="preload" href="assets/passport-page-cover.png" as="image">
+    <link rel="preload" href="assets/arrow-forward.png" as="image">
+    <link rel="preload" href="assets/stamp-image.png" as="image">
+    <link rel="preload" href="assets/stamp-tool.png" as="image">
+    <link rel="preload" href="assets/passport-page-agelimit.png" as="image">
+    <link rel="preload" href="assets/passport-page-marketing.png" as="image">
+    <link rel="preload" href="assets/passport-page-screentime.png" as="image">
+    <link rel="preload" href="assets/agelimit-icon-targets.png" as="image">
+    <link rel="preload" href="assets/pegi-3.png" as="image">
+    <link rel="preload" href="assets/pegi-7.png" as="image">
+    <link rel="preload" href="assets/pegi-12.png" as="image">
+    <link rel="preload" href="assets/pegi-badlanguage.png" as="image">
+    <link rel="preload" href="assets/pegi-discrimination.png" as="image">
+    <link rel="preload" href="assets/pegi-d.png" as="image">
+    <link rel="preload" href="assets/pegi-fear.png" as="image">
+    <link rel="preload" href="assets/pegi-g.png" as="image">
+    <link rel="preload" href="assets/pegi-s.png" as="image">
+    <link rel="preload" href="assets/pegi-v.png" as="image">
+    <link rel="preload" href="assets/sound-camera.mp3" as="audio">
+    <link rel="preload" href="assets/sound-stamp.mp3" as="audio">
   </head>
   <body>
     <!-- Page: Cover -->
@@ -28,7 +48,7 @@
       <div class="passport-stamp-image">
         <img src="assets/stamp-image.png">
       </div>
-      <div class="passport-stamp-tool">
+      <div class="passport-stamp-tool" draggable="false" ondragstart="return false">
         <img src="assets/stamp-tool.png">
       </div>
     </div>
@@ -36,6 +56,31 @@
     <!-- Page: Age limits or content ratings -->
     <div class="passport-page passport-page-agelimit" style="display: none;">
       <img class="passport-page-background" src="assets/passport-page-agelimit.png">
+      <img class="agelimit-icon-targets-background" src="assets/agelimit-icon-targets.png">
+      <div class="agelimit-initial-grid">
+        <div class="agelimit-item" data-id="icon-1"><div class="agelimit-item-content"><img src="assets/pegi-3.png"></div></div>
+        <div class="agelimit-item" data-id="icon-2"><div class="agelimit-item-content"><img src="assets/pegi-7.png"></div></div>
+        <div class="agelimit-item" data-id="icon-3"><div class="agelimit-item-content"><img src="assets/pegi-12.png"></div></div>
+        <div class="agelimit-item" data-id="icon-4"><div class="agelimit-item-content"><img src="assets/pegi-badlanguage.png"></div></div>
+        <div class="agelimit-item" data-id="icon-5"><div class="agelimit-item-content"><img src="assets/pegi-discrimination.png"></div></div>
+        <div class="agelimit-item" data-id="icon-6"><div class="agelimit-item-content"><img src="assets/pegi-d.png"></div></div>
+        <div class="agelimit-item" data-id="icon-7"><div class="agelimit-item-content"><img src="assets/pegi-fear.png"></div></div>
+        <div class="agelimit-item" data-id="icon-8"><div class="agelimit-item-content"><img src="assets/pegi-g.png"></div></div>
+        <div class="agelimit-item" data-id="icon-9"><div class="agelimit-item-content"><img src="assets/pegi-s.png"></div></div>
+        <div class="agelimit-item" data-id="icon-10"><div class="agelimit-item-content"><img src="assets/pegi-v.png"></div></div>
+      </div>
+      <div class="agelimit-target-grid" data-id="target-1"></div>
+      <div class="agelimit-target-grid" data-id="target-2"></div>
+      <div class="agelimit-target-grid" data-id="target-3"></div>
+      <div class="agelimit-target-grid" data-id="target-4"></div>
+      <div class="agelimit-target-grid" data-id="target-5"></div>
+      <div class="agelimit-target-grid" data-id="target-6"></div>
+      <div class="agelimit-target-grid" data-id="target-7"></div>
+      <div class="agelimit-target-grid" data-id="target-8"></div>
+      <div class="agelimit-target-grid" data-id="target-9"></div>
+      <div class="agelimit-target-grid" data-id="target-10"></div>
+      <div class="agelimit-target-grid" data-id="target-11"></div>
+      <div class="agelimit-target-grid" data-id="target-12"></div>
       <button class="continue-button">
         <img src="assets/arrow-forward.png">
       </button>
@@ -57,6 +102,7 @@
       </button>
     </div>
 
+    <script src="vendor/muuri-0.9.5.min.js"></script>
     <script type="module" src="js/passport-page-cover.js"></script>
     <script type="module" src="js/passport-page-agelimit.js"></script>
     <script type="module" src="js/passport-page-marketing.js"></script>
