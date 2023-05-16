@@ -12,6 +12,9 @@ const offscreenCanvas = document.createElement('canvas');
 const stampTool = document.querySelector('.passport-stamp-tool');
 const stampImage = document.querySelector('.passport-stamp-image');
 
+const cameraSound = new Audio('assets/sound-camera.mp3');
+const stampSound = new Audio('assets/sound-stamp.mp3');
+
 const videoWidth = 1024;
 let videoHeight = 0;
 let videoTrack;
@@ -65,6 +68,7 @@ function handleCapture(event) {
 }
 function capturePhoto() {
   playFlashEffect();
+  cameraSound.play();
   videoElement.pause();
   captureSnaposhotImageData();
   passportPageCover.classList.remove('is-live');
@@ -184,12 +188,14 @@ function handleStampPickup(event) {
     isStampHeld = false;
     passportPageCover.classList.remove('is-stamp-held');
     // Place stamp
+    stampSound.play();
     stampImage.style.transform = '';
-    const currentStampPosition = stampImage.getBoundingClientRect();
     const stampToolPosition = stampTool.getBoundingClientRect();
-    const top = stampToolPosition.bottom - currentStampPosition.top;
-    const left = stampToolPosition.left - currentStampPosition.left;
-    stampImage.style.transform = `translate(-15%, -85%) translate(${left}px, ${top}px)`;
+    const containerDimensions = passportPageCover.getBoundingClientRect();
+    const top = stampToolPosition.bottom - containerDimensions.top;
+    const left = stampToolPosition.left - containerDimensions.left;
+    stampImage.style.top = `${top / containerDimensions.height * 100}%`;
+    stampImage.style.left = `${left / containerDimensions.width * 100}%`;
     stampImage.style.opacity = '1';
     // Reset stamp tool
     document.removeEventListener('mousemove', handleStampMove);
