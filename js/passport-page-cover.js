@@ -34,12 +34,12 @@ stampTool.addEventListener('click', handleStampPickup);
 //
 passportPageCover._passport = {
   enter: function() {
-    passportPageCover.style.display = '';
+    passportPageCover.classList.add('active');
     document.addEventListener('keyup', handleCapture);
     return Promise.resolve();
   },
   exit: function() {
-    passportPageCover.style.display = 'none';
+    passportPageCover.classList.remove('active');
     document.removeEventListener('keyup', handleCapture);
     return Promise.resolve();
   },

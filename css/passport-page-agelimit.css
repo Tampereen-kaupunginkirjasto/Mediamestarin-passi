@@ -62,3 +62,9 @@
 .agelimit-target-grid[data-id="target-10"] { top: 11.4rem; left: 40rem; }
 .agelimit-target-grid[data-id="target-11"] { top: 17.7rem; left: 32.2rem; }
 .agelimit-target-grid[data-id="target-12"] { top: 21.6rem; left: 40rem; }
+/* Printing */
+@media print {
+  .agelimit-initial-grid  {
+    display: none;
+  }
+}

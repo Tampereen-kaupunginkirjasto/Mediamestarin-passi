@@ -10,14 +10,14 @@ continueButton.addEventListener('click', handleContinue);
 //
 passportPageAgelimit._passport = {
   enter: function() {
-    passportPageAgelimit.style.display = '';
+    passportPageAgelimit.classList.add('active');
     initialGrid.refreshItems();
     initialGrid.layout();
     window.addEventListener('popstate', handleBack);
     return Promise.resolve();
   },
   exit: function() {
-    passportPageAgelimit.style.display = 'none';
+    passportPageAgelimit.classList.remove('active');
     window.removeEventListener('popstate', handleBack);
     return Promise.resolve();
   },

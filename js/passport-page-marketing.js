@@ -10,12 +10,12 @@ continueButton.addEventListener('click', handleContinue);
 //
 passportPageMarketing._passport = {
   enter: function() {
-    passportPageMarketing.style.display = '';
+    passportPageMarketing.classList.add('active');
     window.addEventListener('popstate', handleBack);
     return Promise.resolve();
   },
   exit: function() {
-    passportPageMarketing.style.display = 'none';
+    passportPageMarketing.classList.remove('active');
     window.removeEventListener('popstate', handleBack);
     return Promise.resolve();
   },

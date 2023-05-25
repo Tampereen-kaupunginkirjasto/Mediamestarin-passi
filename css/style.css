@@ -28,6 +28,13 @@ button {
   height: var(--page-height);
   width: calc(var(--page-height) / var(--page-ratio));
 }
+@media screen {
+  .passport-page:not(.active) {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
 .passport-page-background {
   position: absolute;
   left: -2.5rem;
@@ -42,4 +49,31 @@ button {
 }
 .continue-button img {
   width: 10rem;
+}
+/* Printing */
+@media print {
+  body {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100vh 100vh;
+    place-content: initial;
+  }
+  .continue-button {
+    display: none;
+  }
+  .passport-page:nth-of-type(1) {
+    place-self: center start;
+    order: 2;
+  }
+  .passport-page:nth-of-type(2) {
+    place-self: center end;
+    order: 3;
+  }
+  .passport-page:nth-of-type(3) {
+    place-self: center start;
+    order: 4;
+  }
+  .passport-page:nth-of-type(4) {
+    place-self: center end;
+    order: 1;
+  }
 }

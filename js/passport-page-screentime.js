@@ -9,12 +9,12 @@ continueButton.addEventListener('click', handleContinue);
 //
 passportPageScreentime._passport = {
   enter: function() {
-    passportPageScreentime.style.display = '';
+    passportPageScreentime.classList.add('active');
     window.addEventListener('popstate', handleBack);
     return Promise.resolve();
   },
   exit: function() {
-    passportPageScreentime.style.display = 'none';
+    passportPageScreentime.classList.remove('active');
     window.removeEventListener('popstate', handleBack);
     return Promise.resolve();
   },
