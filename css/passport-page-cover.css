@@ -127,3 +127,9 @@
 .is-stamp-held .passport-stamp-placeholder {
   display: block;
 }
+/* Printing */
+@media print {
+  .passport-stamp-tool  {
+    display: none;
+  }
+}
