@@ -7,7 +7,7 @@
   grid-template-areas:
     '. photo button'
     'name name name'
-    'stamp . continue'
+    'stamp . .'
   ;
 }
 /* Photo */
@@ -82,12 +82,6 @@
 }
 .passport-name-input:focus {
   background: rgb(50 50 0 / .03);
-}
-/* Continue button */
-.passport-page-cover .continue-button {
-  position: relative;
-  grid-area: continue;
-  place-self: center;
 }
 /* Stamping */
 .passport-stamp-tool {

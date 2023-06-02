@@ -1,10 +1,5 @@
 .passport-page-agelimit {
 }
-.passport-page-agelimit .continue-button {
-  position: absolute;
-  bottom: 3rem;
-  right: 1rem;
-}
 /* Container for agelimit icons to be dragged from */
 .agelimit-initial-grid {
   position: absolute;

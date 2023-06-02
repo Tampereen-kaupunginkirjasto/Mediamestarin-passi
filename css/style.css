@@ -13,7 +13,8 @@ body, html {
 }
 body {
   display: grid;
-  place-content: center;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
 }
 button {
   cursor: pointer;
@@ -25,12 +26,15 @@ button {
   --page-height: calc(100vh - var(--page-margin) * 2);
   /* A4 page ratio approximately */
   --page-ratio: 1.414213562373;
+  --page-width: calc(var(--page-height) / var(--page-ratio));
   height: var(--page-height);
-  width: calc(var(--page-height) / var(--page-ratio));
+  width: var(--page-width);
 }
 @media screen {
   .passport-page:not(.active) {
     position: absolute;
+    top: 0;
+    left: 0;
     opacity: 0;
     pointer-events: none;
   }
@@ -43,19 +47,25 @@ button {
   pointer-events: none;
 }
 .continue-button {
+  position: absolute;
+  --reset-right: calc(var(--page-width) / 2 - 75vw);
+  --reset-bottom: calc(var(--page-height) / 2 - 50vh);
+  --right: 5rem;
+  --bottom: 4rem;
+  right: calc(var(--right) + var(--reset-right));
+  bottom: calc(var(--bottom) + var(--reset-bottom));
   border: 0;
   background: transparent;
-  transform: translate(-2rem, -0.5rem);
 }
 .continue-button img {
-  width: 10rem;
+  width: 15rem;
 }
 /* Printing */
 @media print {
   body {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100vh 100vh;
-    place-content: initial;
+    place-items: initial;
   }
   .continue-button {
     display: none;
