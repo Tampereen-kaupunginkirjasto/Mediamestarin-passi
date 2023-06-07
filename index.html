@@ -9,65 +9,45 @@
     <link href="css/passport-page-agelimit.css" rel="stylesheet">
     <link href="css/passport-page-marketing.css" rel="stylesheet">
     <link href="css/passport-page-screentime.css" rel="stylesheet">
-    <link rel="preload" href="assets/passport-page-cover.png" as="image">
-    <link rel="preload" href="assets/arrow-forward.png" as="image">
-    <link rel="preload" href="assets/stamp-image.png" as="image">
-    <link rel="preload" href="assets/stamp-tool.png" as="image">
-    <link rel="preload" href="assets/passport-page-agelimit.png" as="image">
-    <link rel="preload" href="assets/passport-page-marketing.png" as="image">
-    <link rel="preload" href="assets/passport-page-screentime.png" as="image">
-    <link rel="preload" href="assets/agelimit-icon-targets.png" as="image">
-    <link rel="preload" href="assets/pegi-3.png" as="image">
-    <link rel="preload" href="assets/pegi-7.png" as="image">
-    <link rel="preload" href="assets/pegi-12.png" as="image">
-    <link rel="preload" href="assets/pegi-badlanguage.png" as="image">
-    <link rel="preload" href="assets/pegi-discrimination.png" as="image">
-    <link rel="preload" href="assets/pegi-d.png" as="image">
-    <link rel="preload" href="assets/pegi-fear.png" as="image">
-    <link rel="preload" href="assets/pegi-g.png" as="image">
-    <link rel="preload" href="assets/pegi-s.png" as="image">
-    <link rel="preload" href="assets/pegi-v.png" as="image">
-    <link rel="preload" href="assets/sound-camera.mp3" as="audio">
-    <link rel="preload" href="assets/sound-stamp.mp3" as="audio">
   </head>
   <body>
     <!-- Page: Cover -->
     <div class="passport-page passport-page-cover active">
-      <img class="passport-page-background" src="assets/passport-page-cover.png">
+      <img class="passport-page-background" src="assets/passport-page-cover.png" draggable="false">
       <div class="passport-image-container">
-        <img class="passport-image-snapshot"></img>
+        <img class="passport-image-snapshot" draggable="false"></img>
         <video class="passport-image-live"></video>
         <div class="passport-image-flash"></div>
       </div>
       <button class="passport-image-button" style="display: none;">📷</button>
       <input class="passport-name-input" placeholder="Nimi">
       <button class="continue-button">
-        <img src="assets/arrow-forward.png">
+        <img src="assets/arrow-forward.png" draggable="false">
       </button>
       <div class="passport-stamp-placeholder"></div>
       <div class="passport-stamp-image">
-        <img src="assets/stamp-image.png">
+        <img src="assets/stamp-image.png" draggable="false">
       </div>
       <div class="passport-stamp-tool" draggable="false" ondragstart="return false">
-        <img src="assets/stamp-tool.png">
+        <img src="assets/stamp-tool.png" draggable="false">
       </div>
     </div>
 
     <!-- Page: Age limits or content ratings -->
     <div class="passport-page passport-page-agelimit">
-      <img class="passport-page-background" src="assets/passport-page-agelimit.png">
-      <img class="agelimit-icon-targets-background" src="assets/agelimit-icon-targets.png">
+      <img class="passport-page-background" src="assets/passport-page-agelimit.png" draggable="false">
+      <img class="agelimit-icon-targets-background" src="assets/agelimit-icon-targets.png" draggable="false">
       <div class="agelimit-initial-grid">
-        <div class="agelimit-item" data-id="icon-1"><div class="agelimit-item-content"><img src="assets/pegi-3.png"></div></div>
-        <div class="agelimit-item" data-id="icon-2"><div class="agelimit-item-content"><img src="assets/pegi-7.png"></div></div>
-        <div class="agelimit-item" data-id="icon-3"><div class="agelimit-item-content"><img src="assets/pegi-12.png"></div></div>
-        <div class="agelimit-item" data-id="icon-4"><div class="agelimit-item-content"><img src="assets/pegi-badlanguage.png"></div></div>
-        <div class="agelimit-item" data-id="icon-5"><div class="agelimit-item-content"><img src="assets/pegi-discrimination.png"></div></div>
-        <div class="agelimit-item" data-id="icon-6"><div class="agelimit-item-content"><img src="assets/pegi-d.png"></div></div>
-        <div class="agelimit-item" data-id="icon-7"><div class="agelimit-item-content"><img src="assets/pegi-fear.png"></div></div>
-        <div class="agelimit-item" data-id="icon-8"><div class="agelimit-item-content"><img src="assets/pegi-g.png"></div></div>
-        <div class="agelimit-item" data-id="icon-9"><div class="agelimit-item-content"><img src="assets/pegi-s.png"></div></div>
-        <div class="agelimit-item" data-id="icon-10"><div class="agelimit-item-content"><img src="assets/pegi-v.png"></div></div>
+        <div class="agelimit-item" data-id="icon-1"><div class="agelimit-item-content"><img src="assets/pegi-3.png" draggable="false"></div></div>
+        <div class="agelimit-item" data-id="icon-2"><div class="agelimit-item-content"><img src="assets/pegi-7.png" draggable="false"></div></div>
+        <div class="agelimit-item" data-id="icon-3"><div class="agelimit-item-content"><img src="assets/pegi-12.png" draggable="false"></div></div>
+        <div class="agelimit-item" data-id="icon-4"><div class="agelimit-item-content"><img src="assets/pegi-badlanguage.png" draggable="false"></div></div>
+        <div class="agelimit-item" data-id="icon-5"><div class="agelimit-item-content"><img src="assets/pegi-discrimination.png" draggable="false"></div></div>
+        <div class="agelimit-item" data-id="icon-6"><div class="agelimit-item-content"><img src="assets/pegi-d.png" draggable="false"></div></div>
+        <div class="agelimit-item" data-id="icon-7"><div class="agelimit-item-content"><img src="assets/pegi-fear.png" draggable="false"></div></div>
+        <div class="agelimit-item" data-id="icon-8"><div class="agelimit-item-content"><img src="assets/pegi-g.png" draggable="false"></div></div>
+        <div class="agelimit-item" data-id="icon-9"><div class="agelimit-item-content"><img src="assets/pegi-s.png" draggable="false"></div></div>
+        <div class="agelimit-item" data-id="icon-10"><div class="agelimit-item-content"><img src="assets/pegi-v.png" draggable="false"></div></div>
       </div>
       <div class="agelimit-target-grid" data-id="target-1"></div>
       <div class="agelimit-target-grid" data-id="target-2"></div>
@@ -82,27 +62,102 @@
       <div class="agelimit-target-grid" data-id="target-11"></div>
       <div class="agelimit-target-grid" data-id="target-12"></div>
       <button class="continue-button">
-        <img src="assets/arrow-forward.png">
+        <img src="assets/arrow-forward.png" draggable="false">
       </button>
     </div>
 
     <!-- Page: Marketing and advertising -->
     <div class="passport-page passport-page-marketing">
-      <img class="passport-page-background" src="assets/passport-page-marketing.png">
+      <img class="passport-page-background" src="assets/passport-page-marketing.png" draggable="false">
+      <img class="marketing-phone-background" src="assets/marketing-phone.png" draggable="false">
+      <div class="marketing-page-phase active" data-phase="select-character">
+        <img class="marketing-character" data-character="raccoon" src="assets/marketing-character-select-raccoon.png" draggable="false">
+        <img class="marketing-character" data-character="mouse" src="assets/marketing-character-select-mouse.png" draggable="false">
+        <img class="marketing-character" data-character="croc" src="assets/marketing-character-select-croc.png" draggable="false">
+      </div>
+      <div class="marketing-page-phase" data-phase="select-product" data-selected-character="raccoon">
+        <div class="product-select-container">
+          <div class="product-select">
+            <img class="product" data-character="raccoon" data-reaction="happy" src="assets/product-raccoon-trashpicker.png" draggable="false">
+            <img class="product" data-character="raccoon" data-reaction="intrigued" src="assets/product-raccoon-washer.png" draggable="false">
+            <img class="product" data-character="raccoon" data-reaction="surprised" src="assets/product-raccoon-gardening.png" draggable="false">
+            <img class="product" data-character="raccoon" data-reaction="very-surprised" src="assets/product-raccoon-garbagetruck.png" draggable="false">
+            <img class="product" data-character="mouse" data-reaction="happy" src="assets/product-mouse-cheese.png" draggable="false">
+            <img class="product" data-character="mouse" data-reaction="intrigued" src="assets/product-mouse-skateboard.png" draggable="false">
+            <img class="product" data-character="mouse" data-reaction="surprised" src="assets/product-mouse-headphones.png" draggable="false">
+            <img class="product" data-character="mouse" data-reaction="very-surprised" src="assets/product-mouse-computer.png" draggable="false">
+            <img class="product" data-character="croc" data-reaction="happy" src="assets/product-croc-toothcare.png" draggable="false">
+            <img class="product" data-character="croc" data-reaction="intrigued" src="assets/product-croc-boat.png" draggable="false">
+            <img class="product" data-character="croc" data-reaction="surprised" src="assets/product-croc-floatie.png" draggable="false">
+            <img class="product" data-character="croc" data-reaction="very-surprised" src="assets/product-croc-swimgear.png" draggable="false">
+          </div>
+          <img class="character-head" data-character="raccoon" src="assets/marketing-character-head-raccoon.png" draggable="false">
+          <img class="character-head" data-character="mouse" src="assets/marketing-character-head-mouse.png" draggable="false">
+          <img class="character-head" data-character="croc" src="assets/marketing-character-head-croc.png" draggable="false">
+        </div>
+      </div>
+      <div class="marketing-page-phase" data-phase="select-arguments" data-selected-character="raccoon" data-selected-reaction="neutral">
+        <div class="argument-select">
+          <div class="argument"><img src="assets/sticker-crossed.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-diamond.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-fire.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-grinning.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-heart-eyes.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-heart.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-hearts.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-horns.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-kiwifruit.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-lemon.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-medal.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-melon.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-money-face.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-money-wings.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-muscle.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-party.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-recycling.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-shield.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-smiling-with-hearts.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-sparkle.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-star.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-star-struck.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-strawberry.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-stuck-out-tongue.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-sunglasses.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-sun.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-thumb-up.png" draggable="false"></div>
+          <div class="argument"><img src="assets/sticker-very-happy.png" draggable="false"></div>
+        </div>
+        <img class="reaction-character" data-character="raccoon" data-reaction="neutral" src="assets/marketing-character-reaction-raccoon-neutral.png" draggable="false">
+        <img class="reaction-character" data-character="raccoon" data-reaction="happy" src="assets/marketing-character-reaction-raccoon-happy.png" draggable="false">
+        <img class="reaction-character" data-character="raccoon" data-reaction="intrigued" src="assets/marketing-character-reaction-raccoon-intrigued.png" draggable="false">
+        <img class="reaction-character" data-character="raccoon" data-reaction="surprised" src="assets/marketing-character-reaction-raccoon-surprised.png" draggable="false">
+        <img class="reaction-character" data-character="raccoon" data-reaction="very-surprised" src="assets/marketing-character-reaction-raccoon-verysurprised.png" draggable="false">
+        <img class="reaction-character" data-character="mouse" data-reaction="neutral" src="assets/marketing-character-reaction-mouse-neutral.png" draggable="false">
+        <img class="reaction-character" data-character="mouse" data-reaction="happy" src="assets/marketing-character-reaction-mouse-happy.png" draggable="false">
+        <img class="reaction-character" data-character="mouse" data-reaction="intrigued" src="assets/marketing-character-reaction-mouse-intrigued.png" draggable="false">
+        <img class="reaction-character" data-character="mouse" data-reaction="surprised" src="assets/marketing-character-reaction-mouse-surprised.png" draggable="false">
+        <img class="reaction-character" data-character="mouse" data-reaction="very-surprised" src="assets/marketing-character-reaction-mouse-verysurprised.png" draggable="false">
+        <img class="reaction-character" data-character="croc" data-reaction="neutral" src="assets/marketing-character-reaction-croc-neutral.png" draggable="false">
+        <img class="reaction-character" data-character="croc" data-reaction="happy" src="assets/marketing-character-reaction-croc-happy.png" draggable="false">
+        <img class="reaction-character" data-character="croc" data-reaction="intrigued" src="assets/marketing-character-reaction-croc-intrigued.png" draggable="false">
+        <img class="reaction-character" data-character="croc" data-reaction="surprised" src="assets/marketing-character-reaction-croc-surprised.png" draggable="false">
+        <img class="reaction-character" data-character="croc" data-reaction="very-surprised" src="assets/marketing-character-reaction-croc-verysurprised.png" draggable="false">
+      </div>
       <button class="continue-button">
-        <img src="assets/arrow-forward.png">
+        <img src="assets/arrow-forward.png" draggable="false">
       </button>
     </div>
 
     <!-- Page: Screen time agreement -->
     <div class="passport-page passport-page-screentime">
-      <img class="passport-page-background" src="assets/passport-page-screentime.png">
+      <img class="passport-page-background" src="assets/passport-page-screentime.png" draggable="false">
       <button class="continue-button">
-        <img src="assets/arrow-forward.png">
+        <img src="assets/arrow-forward.png" draggable="false">
       </button>
     </div>
 
     <script src="vendor/muuri-0.9.5.min.js"></script>
+    <script src="vendor/draggabilly-3.0.0.pkgd.min.js"></script>
     <script type="module" src="js/passport-page-cover.js"></script>
     <script type="module" src="js/passport-page-agelimit.js"></script>
     <script type="module" src="js/passport-page-marketing.js"></script>

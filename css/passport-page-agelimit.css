@@ -1,65 +1,68 @@
-.passport-page-agelimit {
+@layer passport-page {
+  .passport-page-agelimit {
+  }
+  /* Container for agelimit icons to be dragged from */
+  .agelimit-initial-grid {
+    position: absolute;
+    top: 1rem;
+    left: 100%;
+    /* Fill available space between container and window edge */
+    width: calc(75vw - 50%);
+    max-width: 50%;
+    min-height: calc(100% - 1rem);
+  }
+  .agelimit-item {
+    display: block;
+    position: absolute;
+    width: 6.5rem;
+    height: 6.5rem;
+    margin: 0.35rem;
+  }
+  .agelimit-item.muuri-item-dragging {
+    z-index: 3;
+  }
+  .agelimit-item.muuri-item-releasing {
+    z-index: 2;
+  }
+  .agelimit-item-content {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+  }
+  .agelimit-item img {
+    width: 100%;
+    height: auto;
+  }
+  /* Drag target containers */
+  .agelimit-target-grid {
+    position: absolute;
+    width: 7rem;
+    min-height: 7rem;
+  }
+  .agelimit-icon-targets-background {
+    position: absolute;
+    left: 2.5rem;
+    top: 4rem;
+    width: calc(100% - 6rem);
+    pointer-events: none;
+  }
+  .agelimit-target-grid[data-id="target-1"] { top: 21.7rem; left: 20rem; }
+  .agelimit-target-grid[data-id="target-2"] { top: 29.3rem; left: 18.4rem; }
+  .agelimit-target-grid[data-id="target-3"] { top: 37.1rem; left: 21.8rem; }
+  .agelimit-target-grid[data-id="target-4"] { top: 6.4rem; left: 9.5rem; }
+  .agelimit-target-grid[data-id="target-5"] { top: 14.4rem; left: 5.6rem; }
+  .agelimit-target-grid[data-id="target-6"] { top: 22.7rem; left: 6.9rem; }
+  .agelimit-target-grid[data-id="target-7"] { top: 31.1rem; left: 4.8rem; }
+  .agelimit-target-grid[data-id="target-8"] { top: 9.3rem; left: 21.7rem; }
+  .agelimit-target-grid[data-id="target-9"] { top: 8.4rem; left: 31.2rem; }
+  .agelimit-target-grid[data-id="target-10"] { top: 11.4rem; left: 40rem; }
+  .agelimit-target-grid[data-id="target-11"] { top: 17.7rem; left: 32.2rem; }
+  .agelimit-target-grid[data-id="target-12"] { top: 21.6rem; left: 40rem; }
 }
-/* Container for agelimit icons to be dragged from */
-.agelimit-initial-grid {
-  position: absolute;
-  top: 1rem;
-  left: 100%;
-  /* Fill available space between container and window edge */
-  width: calc((100vw - 100%) / 2);
-  max-width: 50%;
-  min-height: calc(100% - 1rem);
-}
-.agelimit-item {
-  display: block;
-  position: absolute;
-  width: 6.5rem;
-  height: 6.5rem;
-  margin: 0.35rem;
-}
-.agelimit-item.muuri-item-dragging {
-  z-index: 3;
-}
-.agelimit-item.muuri-item-releasing {
-  z-index: 2;
-}
-.agelimit-item-content {
-  width: 100%;
-  height: 100%;
-  cursor: grab;
-}
-.agelimit-item img {
-  width: 100%;
-  height: auto;
-}
-/* Drag target containers */
-.agelimit-target-grid {
-  position: absolute;
-  width: 7rem;
-  min-height: 7rem;
-}
-.agelimit-icon-targets-background {
-  position: absolute;
-  left: 2.5rem;
-  top: 4rem;
-  width: calc(100% - 6rem);
-  pointer-events: none;
-}
-.agelimit-target-grid[data-id="target-1"] { top: 21.7rem; left: 20rem; }
-.agelimit-target-grid[data-id="target-2"] { top: 29.3rem; left: 18.4rem; }
-.agelimit-target-grid[data-id="target-3"] { top: 37.1rem; left: 21.8rem; }
-.agelimit-target-grid[data-id="target-4"] { top: 6.4rem; left: 9.5rem; }
-.agelimit-target-grid[data-id="target-5"] { top: 14.4rem; left: 5.6rem; }
-.agelimit-target-grid[data-id="target-6"] { top: 22.7rem; left: 6.9rem; }
-.agelimit-target-grid[data-id="target-7"] { top: 31.1rem; left: 4.8rem; }
-.agelimit-target-grid[data-id="target-8"] { top: 9.3rem; left: 21.7rem; }
-.agelimit-target-grid[data-id="target-9"] { top: 8.4rem; left: 31.2rem; }
-.agelimit-target-grid[data-id="target-10"] { top: 11.4rem; left: 40rem; }
-.agelimit-target-grid[data-id="target-11"] { top: 17.7rem; left: 32.2rem; }
-.agelimit-target-grid[data-id="target-12"] { top: 21.6rem; left: 40rem; }
-/* Printing */
-@media print {
-  .agelimit-initial-grid  {
-    display: none;
+@layer print {
+  @media print {
+    .agelimit-initial-grid {
+      display: none;
+    }
   }
 }
