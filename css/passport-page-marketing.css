@@ -124,6 +124,21 @@
     width: 30rem;
     z-index: 1;
   }
+  .publish-button {
+    position: absolute;
+    --reset-right: calc(var(--page-width) / 2 - 75vw);
+    --reset-bottom: calc(var(--page-height) / 2 - 50vh);
+    --right: 5rem;
+    --bottom: 4rem;
+    right: calc(var(--right) + var(--reset-right));
+    bottom: calc(var(--bottom) + var(--reset-bottom));
+    border: 0;
+    background: transparent;
+    z-index: 5;
+  }
+  .publish-button img {
+    width: 15rem;
+  }
 }
 @layer hidden-elements {
   .marketing-page-phase:not(.active),

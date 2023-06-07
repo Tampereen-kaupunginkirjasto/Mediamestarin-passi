@@ -53,6 +53,7 @@
     bottom: calc(var(--bottom) + var(--reset-bottom));
     border: 0;
     background: transparent;
+    z-index: 5;
   }
   .continue-button img {
     width: 15rem;

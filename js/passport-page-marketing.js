@@ -8,6 +8,7 @@ const argumentSelectPhaseContainer = document.querySelector('.marketing-page-pha
 const productSelectContainer = document.querySelector('.product-select');
 const argumentSelectContainer = document.querySelector('.argument-select');
 const argumentStickers = Array.from(document.querySelectorAll('[data-phase="select-arguments"] .argument img'));
+const publishButton = document.querySelector('.passport-page-marketing .publish-button');
 
 let selectedCharacter = '';
 let selectedReaction = '';
@@ -15,6 +16,7 @@ let selectedReaction = '';
 continueButton.addEventListener('click', handleContinue);
 characterSelectPhaseContainer.addEventListener('click', handleCharacterSelect);
 productSelectContainer.addEventListener('click', handleProductSelect);
+publishButton.addEventListener('click', handlePublish);
 
 //
 // Page transitions
@@ -66,6 +68,9 @@ function handleProductSelect(event) {
   argumentSelectPhaseContainer.appendChild(productElementCopy);
   productSelectPhaseContainer.classList.remove('active');
   argumentSelectPhaseContainer.classList.add('active');
+  // TODO: Success criteria for showing publish button
+  continueButton.style.display = 'none';
+  publishButton.style.display = '';
 }
 
 //
@@ -119,6 +124,11 @@ argumentStickers.forEach(argumentSticker => {
     ></div>`
   );
 });
+function handlePublish() {
+  argumentSelectPhaseContainer.setAttribute('data-selected-reaction', selectedReaction);
+  publishButton.style.display = 'none';
+  continueButton.style.display = '';
+}
 function convertPixelsToRem(px) {
   const remBase = parseFloat(getComputedStyle(document.documentElement).fontSize);
   return px * (1 / remBase);
