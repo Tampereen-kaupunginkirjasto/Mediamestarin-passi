@@ -80,6 +80,9 @@
     .continue-button {
       display: none;
     }
+    .passport-page {
+      overflow: hidden;
+    }
     .passport-page:nth-of-type(1) {
       place-self: center start;
       order: 2;

@@ -1,5 +1,113 @@
-.passport-page-screentime {
-}
-.passport-page-screentime .continue-button {
-  display: none;
+@layer passport-page {
+  .passport-page-screentime {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem .8rem 4rem 0;
+  }
+  .passport-page-screentime .continue-button {
+    display: none;
+  }
+  .activity-select {
+    position: absolute;
+    left: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    /* Fill available space between container and window edge */
+    width: calc(75vw - 50%);
+    max-width: calc(75% + 6rem);
+    height: 100%;
+    padding: 3rem;
+    z-index: 2;
+  }
+  .activity-select .activity {
+    --fill-color: 255 255 255;
+    --activity-icon-width: 12rem;
+    --activity-icon-height: 12rem;
+    width: var(--activity-icon-width);
+    height: var(--activity-icon-height);
+    mask-size: 100%;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    background: rgb(var(--fill-color) / 1);
+    transition: mask-size 100ms ease;
+    cursor: pointer;
+  }
+  .activity-select .activity:hover {
+    mask-size: 110%;
+  }
+  .activity-select .activity.selected {
+    mask-size: 120%;
+  }
+  .activity-select .activity img {
+    width: var(--activity-icon-width);
+  }
+  .selected-activities {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    min-height: 22rem;
+  }
+  .selected-activities .activity {
+    --fill-color: 255 255 255;
+    --activity-icon-width: 10rem;
+    --activity-icon-height: 10rem;
+    width: var(--activity-icon-width);
+    height: var(--activity-icon-height);
+    mask-size: 120%;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    background: rgb(var(--fill-color) / 1);
+  }
+  .selected-activities .activity img {
+    width: var(--activity-icon-width);
+  }
+  .selected-activities .activity:not(.selected) {
+    display: none;
+  }
+  .time-slots {
+    position: relative;
+    width: 50rem;
+    height: auto;
+  }
+  .time-slots .segment {
+    fill: rgba(208, 179, 148, 0.5);
+    stroke: #f1dcc4;
+    cursor: pointer;
+  }
+  .time-slots[data-color] .segment:hover {
+    fill: rgb(var(--fill-color) / .4);
+  }
+  .time-slots .segment[data-color] {
+    fill: rgb(var(--fill-color) / 1);
+  }
+  .time-slots .segment[data-color]:hover {
+    fill: rgb(var(--fill-color) / .8);
+  }
+  .screen-time-agreement {
+    position: relative;
+    flex-grow: 1;
+    width: calc(100% - 3rem);
+    height: 0;
+    margin-top: 2rem;
+    border: 0.3rem solid rgb(113 115 140 / .7);
+    mix-blend-mode: multiply;
+  }
+  .passport-page-screentime [data-color="color-01"] { --fill-color: 136 204 238; }
+  .passport-page-screentime [data-color="color-02"] { --fill-color: 204 102 119; }
+  .passport-page-screentime [data-color="color-03"] { --fill-color: 221 204 119; }
+  .passport-page-screentime [data-color="color-04"] { --fill-color: 17 119 51; }
+  .passport-page-screentime [data-color="color-05"] { --fill-color: 51 34 136; }
+  .passport-page-screentime [data-color="color-06"] { --fill-color: 170 68 153; }
+  .passport-page-screentime [data-color="color-07"] { --fill-color: 68 170 153; }
+  .passport-page-screentime [data-color="color-08"] { --fill-color: 153 153 51; }
+  .passport-page-screentime [data-color="color-09"] { --fill-color: 136 34 85; }
+  .passport-page-screentime [data-color="color-10"] { --fill-color: 102 17 0; }
+  .passport-page-screentime [data-color="color-11"] { --fill-color: 102 153 204; }
+  .passport-page-screentime [data-color="color-12"] { --fill-color: 136 136 136; }
 }
