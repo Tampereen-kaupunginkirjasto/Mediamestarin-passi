@@ -89,7 +89,7 @@
     position: absolute;
     top: 10rem;
     left: calc(100% + 4rem);
-    cursor: grab;
+    cursor: pointer;
   }
   .passport-stamp-tool img {
     width: 10rem;
