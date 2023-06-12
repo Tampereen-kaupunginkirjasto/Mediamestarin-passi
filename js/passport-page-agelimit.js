@@ -131,3 +131,17 @@ function customDragSortPredicate(item, event) {
     action: 'move',
   };
 }
+
+//
+// Success criteria
+//
+allGrids.forEach(grid => grid.on('dragReleaseEnd', checkSuccess));
+function checkSuccess() {
+  const initialGridRemainingItemCount = document.querySelectorAll('.agelimit-initial-grid .agelimit-item').length;
+  if (initialGridRemainingItemCount === 0) {
+    continueButton.classList.add('active');
+  }
+  else {
+    continueButton.classList.remove('active');
+  }
+}

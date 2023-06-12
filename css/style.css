@@ -53,6 +53,7 @@
     bottom: calc(var(--bottom) + var(--reset-bottom));
     border: 0;
     background: transparent;
+    transition: opacity 200ms ease;
     z-index: 5;
   }
   .continue-button img {
@@ -68,11 +69,14 @@
       opacity: 0;
       pointer-events: none;
     }
+    .continue-button:not(.active) {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 }
 @layer print {
   @page {
-    size: A4 landscape;
     margin: 0mm;
   }
   @media print {
