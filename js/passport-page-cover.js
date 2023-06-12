@@ -191,6 +191,7 @@ function handleStampPickup(event) {
     isStampHeld = false;
     passportPageCover.classList.remove('is-stamp-held');
     // Place stamp
+    stampSound.currentTime = 0;
     stampSound.play();
     stampImage.style.transform = '';
     const stampToolPosition = stampTool.getBoundingClientRect();

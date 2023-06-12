@@ -109,18 +109,20 @@
   .passport-stamp-image img {
     width: 10rem;
   }
-  .passport-stamp-placeholder {
-    display: none;
+  .passport-stamp-area {
+    opacity: 0;
     position: absolute;
-    left: 4rem;
-    bottom: 5rem;
-    width: 9.2rem;
-    height: 9.2rem;
+    width: 49.2rem;
+    height: 18.3rem;
+    left: 2rem;
+    top: 54rem;
     border: 0.25rem dashed rgb(0 0 0 / .4);
-    border-radius: 50%;
+    box-shadow: 0 0 0 100vw rgb(0 0 0 / .2);
+    transition: opacity 200ms ease;
+    pointer-events: none;
   }
-  .is-stamp-held .passport-stamp-placeholder {
-    display: block;
+  .is-stamp-held .passport-stamp-area {
+    opacity: 1;
   }
 }
 @layer print {
