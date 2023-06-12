@@ -48,6 +48,9 @@ function handleContinue() {
   passportPageCover._passport.exit();
   passportPageAgelimit._passport.enter();
   history.pushState({page: 'cover'}, '');
+  if ( ! window.onbeforeunload) {
+    window.onbeforeunload = handleUnloadConfirmation;
+  }
 }
 
 //
@@ -235,4 +238,12 @@ function playStampReturnAnimation() {
     {duration: 300},
   );
   return stampReturnAnimation.finished;
+}
+
+//
+// Confirm unload
+//
+function handleUnloadConfirmation(event) {
+  event.preventDefault();
+  return (event.returnValue = '');
 }
