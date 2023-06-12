@@ -1,5 +1,7 @@
 const passportPageCover = document.querySelector('.passport-page-cover');
 const passportPageAgelimit = document.querySelector('.passport-page-agelimit');
+const passportPageMarketing = document.querySelector('.passport-page-marketing');
+const passportPageScreentime = document.querySelector('.passport-page-screentime');
 const continueButton = document.querySelector('.passport-page-cover .continue-button');
 
 const passportImageContainer = document.querySelector('.passport-image-container');
@@ -322,4 +324,24 @@ function playStampErrorAnimation() {
 function handleUnloadConfirmation(event) {
   event.preventDefault();
   return (event.returnValue = '');
+}
+
+//
+// Page skip for debugging
+//
+const queryParams = new URL(document.location).searchParams;
+if (queryParams.get('page') == '1') {
+  // We are already on page 1
+}
+else if (queryParams.get('page') == '2') {
+  passportPageCover._passport.exit();
+  setTimeout(() => { passportPageAgelimit._passport.enter(); }, 1000);
+}
+else if (queryParams.get('page') == '3') {
+  passportPageCover._passport.exit();
+  setTimeout(() => { passportPageMarketing._passport.enter(); }, 1000);
+}
+else if (queryParams.get('page') == '4') {
+  passportPageCover._passport.exit();
+  setTimeout(() => { passportPageScreentime._passport.enter(); }, 1000);
 }
