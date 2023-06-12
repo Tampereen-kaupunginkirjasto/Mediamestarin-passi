@@ -68,8 +68,6 @@ function handleProductSelect(event) {
   argumentSelectPhaseContainer.appendChild(productElementCopy);
   productSelectPhaseContainer.classList.remove('active');
   argumentSelectPhaseContainer.classList.add('active');
-  // TODO: Success criteria for showing publish button
-  continueButton.style.display = 'none';
   publishButton.style.display = '';
 }
 
@@ -132,7 +130,7 @@ argumentStickers.forEach(argumentSticker => {
 function handlePublish() {
   argumentSelectPhaseContainer.setAttribute('data-selected-reaction', selectedReaction);
   publishButton.style.display = 'none';
-  continueButton.style.display = '';
+  setTimeout(() => continueButton.classList.add('active'), 2000);
 }
 function convertPixelsToRem(px) {
   const remBase = parseFloat(getComputedStyle(document.documentElement).fontSize);
