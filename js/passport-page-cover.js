@@ -9,8 +9,12 @@ const flashEffectElement = document.querySelector('.passport-image-flash');
 const captureButton = document.querySelector('.passport-image-button');
 const offscreenCanvas = document.createElement('canvas');
 
+const nameInput = document.querySelector('.passport-name-input');
+
 const stampTool = document.querySelector('.passport-stamp-tool');
+const stampToolImage = document.querySelector('.passport-stamp-tool img');
 const stampImage = document.querySelector('.passport-stamp-image');
+const stampArea = document.querySelector('.passport-stamp-area');
 
 const cameraSound = new Audio('assets/sound-camera.mp3');
 const stampSound = new Audio('assets/sound-stamp.mp3');
@@ -19,15 +23,23 @@ const videoWidth = 1024;
 let videoHeight = 0;
 let videoTrack;
 let videoPauseTimeout;
-
 let isStampHeld = false;
+let successCriteria = {
+  isStamped: false,
+  hasName: false,
+  hasImage: false,
+};
 
 passportImageContainer.style.cursor = 'pointer';
 passportImageContainer.addEventListener('click', initVideo);
 captureButton.addEventListener('click', handleCapture);
 document.addEventListener('keyup', handleCapture);
 continueButton.addEventListener('click', handleContinue);
-stampTool.addEventListener('click', handleStampPickup);
+stampTool.addEventListener('click', handleStampClick);
+nameInput.addEventListener('input', _event => {
+  successCriteria.hasName = nameInput.value.length >= 1;
+  checkSuccess();
+});
 
 //
 // Page transitions
@@ -54,19 +66,36 @@ function handleContinue() {
 }
 
 //
+// Success criteria
+//
+function checkSuccess() {
+  const everyCriteriaPassed = Object.values(successCriteria).every(criterion => criterion === true);
+  if (everyCriteriaPassed) {
+    continueButton.classList.add('active');
+  }
+  else {
+    continueButton.classList.remove('active');
+  }
+}
+
+//
 // Camera controls
 //
 function handleCapture(event) {
   const SPACEBAR_KEY = ' ';
   const isKeyEvent = event.type === 'keyup';
-  if (isKeyEvent && event.key !== SPACEBAR_KEY) {
+  if (isKeyEvent && (event.key !== SPACEBAR_KEY || document.activeElement == nameInput)) {
     return;
   }
   if (passportPageCover.classList.contains('is-live')) {
     capturePhoto();
+    successCriteria.hasImage = true;
+    checkSuccess();
   }
   else {
     clearPhoto();
+    successCriteria.hasImage = false;
+    checkSuccess();
   }
 }
 function capturePhoto() {
@@ -186,40 +215,66 @@ function clearSnapshotImageData() {
 //
 // Stamping
 //
-function handleStampPickup(event) {
+function handleStampClick(event) {
   if (isStampHeld) {
-    isStampHeld = false;
-    passportPageCover.classList.remove('is-stamp-held');
-    // Place stamp
-    stampSound.currentTime = 0;
-    stampSound.play();
-    stampImage.style.transform = '';
-    const stampToolPosition = stampTool.getBoundingClientRect();
-    const containerDimensions = passportPageCover.getBoundingClientRect();
-    const top = stampToolPosition.bottom - containerDimensions.top;
-    const left = stampToolPosition.left - containerDimensions.left;
-    stampImage.style.top = `${top / containerDimensions.height * 100}%`;
-    stampImage.style.left = `${left / containerDimensions.width * 100}%`;
-    stampImage.style.opacity = '1';
-    // Reset stamp tool
-    document.removeEventListener('mousemove', handleStampMove);
-    playStampReturnAnimation().then(() => {
-      stampTool.style.transform = '';
-    });
+    placeStamp();
   }
   else {
-    isStampHeld = true;
-    passportPageCover.classList.add('is-stamp-held');
-    const boundingRect = stampTool.getBoundingClientRect();
-    // Where on the stamp tool the user clicked
-    const clickOffsetTop = boundingRect.top - event.pageY;
-    const clickOffsetLeft = boundingRect.left - event.pageX;
-    stampTool._initialPosition = {
-      top: boundingRect.top - clickOffsetTop,
-      left: boundingRect.left - clickOffsetLeft,
-    };
-    document.addEventListener('mousemove', handleStampMove);
+    pickUpStamp();
   }
+}
+function placeStamp() {
+  stampImage.style.transform = '';
+  const stampToolPosition = stampTool.getBoundingClientRect();
+  const containerDimensions = passportPageCover.getBoundingClientRect();
+  const top = stampToolPosition.bottom - containerDimensions.top;
+  const left = stampToolPosition.left - containerDimensions.left;
+  const stampImageOriginalTop = stampImage.style.top;
+  const stampImageOriginalLeft = stampImage.style.left;
+  stampImage.style.top = `${top / containerDimensions.height * 100}%`;
+  stampImage.style.left = `${left / containerDimensions.width * 100}%`;
+  // Validate stamp position
+  const stampImagePosition = stampImage.getBoundingClientRect();
+  const stampAreaPosition = stampArea.getBoundingClientRect();
+  const isWithinStampArea = (
+    stampImagePosition.top >= stampAreaPosition.top
+    &&stampImagePosition.left >= stampAreaPosition.left
+    && stampImagePosition.right <= stampAreaPosition.right
+    && stampImagePosition.bottom <= stampAreaPosition.bottom
+  );
+  if ( ! isWithinStampArea) {
+    stampImage.style.top = stampImageOriginalTop;
+    stampImage.style.left = stampImageOriginalLeft;
+    playStampErrorAnimation();
+    return;
+  }
+  stampImage.style.opacity = '1';
+  isStampHeld = false;
+  passportPageCover.classList.remove('is-stamp-held');
+  document.body.style.cursor = '';
+  stampSound.currentTime = 0;
+  stampSound.play();
+  // Reset stamp tool
+  document.removeEventListener('mousemove', handleStampMove);
+  playStampReturnAnimation().then(() => {
+    stampTool.style.transform = '';
+  });
+  successCriteria.isStamped = true;
+  checkSuccess();
+}
+function pickUpStamp() {
+  isStampHeld = true;
+  passportPageCover.classList.add('is-stamp-held');
+  document.body.style.cursor = 'none';
+  const boundingRect = stampTool.getBoundingClientRect();
+  // Where on the stamp tool the user clicked
+  const clickOffsetTop = boundingRect.top - event.pageY;
+  const clickOffsetLeft = boundingRect.left - event.pageX;
+  stampTool._initialPosition = {
+    top: boundingRect.top - clickOffsetTop,
+    left: boundingRect.left - clickOffsetLeft,
+  };
+  document.addEventListener('mousemove', handleStampMove);
 }
 function handleStampMove(event) {
   const top = event.pageY - stampTool._initialPosition.top;
@@ -239,6 +294,26 @@ function playStampReturnAnimation() {
     {duration: 300},
   );
   return stampReturnAnimation.finished;
+}
+let stampErrorAnimation;
+function playStampErrorAnimation() {
+  if (stampErrorAnimation !== undefined) {
+    stampErrorAnimation.cancel();
+  }
+  stampErrorAnimation = stampToolImage.animate(
+    [
+      {transform: 'translateX(0)'},
+      {transform: 'translateX(-5px)'},
+      {transform: 'translateX(5px)'},
+      {transform: 'translateX(-10px)'},
+      {transform: 'translateX(10px)'},
+      {transform: 'translateX(0)'},
+    ], {
+      duration: 300,
+      easing: 'ease-in-out',
+    },
+  );
+  return stampErrorAnimation.finished;
 }
 
 //
