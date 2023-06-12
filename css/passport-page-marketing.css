@@ -105,6 +105,8 @@
     position: absolute;
     width: var(--sticker-width);
     height: var(--sticker-width);
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
     mask-size: contain;
     mask-repeat: no-repeat;
     background-color: #eee;
@@ -156,8 +158,6 @@
     position: absolute;
     opacity: 0;
     pointer-events: none;
-    width: 0;
-    height: 0;
     overflow: hidden;
   }
 }
@@ -165,7 +165,8 @@
   @media print {
     [data-phase="select-character"],
     [data-phase="select-product"],
-    [data-phase="select-arguments"] .reaction-character {
+    [data-phase="select-arguments"] .reaction-character,
+    [data-phase="select-arguments"] .argument:not(.was-dragged) {
       display: none;
     }
   }

@@ -90,6 +90,7 @@ argumentStickers.forEach(argumentSticker => {
     argumentSticker.style.top = stickerDimensions.top - containerDimensions.top;
     argumentSticker.style.position = 'absolute';
     this.handleDragStart();
+    argumentSticker.closest('.argument').classList.add('was-dragged');
   }
   function setRemLeftTop() {
     const { x, y } = this.position;
@@ -107,6 +108,7 @@ argumentStickers.forEach(argumentSticker => {
     argumentSticker.style.left = '';
     argumentSticker.style.right = '';
     argumentSticker.style.zIndex = '';
+    argumentSticker.closest('.argument').classList.remove('was-dragged');
     draggie.once('dragStart', handleInitialDrag);
   }
   // TODO: Prevent dragging to an invalid position. Reset with an animation.
@@ -120,7 +122,10 @@ argumentStickers.forEach(argumentSticker => {
   argumentSticker.parentElement.insertAdjacentHTML('afterbegin',
     `<div
       class="argument-shadow"
-      style="mask-image: url(${argumentSticker.src});"
+      style="
+        -webkit-mask-image: url(${argumentSticker.src});
+        mask-image: url(${argumentSticker.src});
+      "
     ></div>`
   );
 });

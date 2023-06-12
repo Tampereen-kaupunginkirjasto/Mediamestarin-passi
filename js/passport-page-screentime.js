@@ -37,8 +37,6 @@ function handleBack() {
 // Activity select
 //
 activityElements.forEach(activityElement => {
-  const activityImage = activityElement.querySelector('img');
-  activityElement.style.maskImage = `url(${activityImage.src})`;
   activityElement.addEventListener('click', handleActivitySelect);
   function handleActivitySelect() {
     selectedColor = activityElement.getAttribute('data-color');
@@ -46,10 +44,10 @@ activityElements.forEach(activityElement => {
     activityElement.classList.add('selected');
     timeSlotsContainer.setAttribute('data-color', selectedColor);
   }
+  activityElement.insertAdjacentHTML('afterbegin', '<div class="activity-highlight"></div>');
 });
 selectedActivityElements.forEach(activityElement => {
-  const activityImage = activityElement.querySelector('img');
-  activityElement.style.maskImage = `url(${activityImage.src})`;
+  activityElement.insertAdjacentHTML('afterbegin', '<div class="activity-highlight"></div>');
 });
 
 //
@@ -72,7 +70,7 @@ function handleTimeSlotClick(event) {
     segmentElement.setAttribute('data-color', selectedColor);
     document.querySelector(`.selected-activities .activity[data-color="${selectedColor}"]`).classList.add('selected');
     const selectedColorSegments = document.querySelectorAll(`.time-slots .segment[data-color="${previousColor}"]`);
-    if (selectedColorSegments.length === 0) {
+    if (previousColor && selectedColorSegments.length === 0) {
       document.querySelector(`.selected-activities .activity[data-color="${previousColor}"]`).classList.remove('selected');
     }
   }
