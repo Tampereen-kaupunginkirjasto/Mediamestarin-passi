@@ -71,17 +71,27 @@
   }
 }
 @layer print {
+  @page {
+    size: A4 landscape;
+    margin: 0mm;
+  }
   @media print {
     body {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 100vh 100vh;
       place-items: initial;
+      height: 200vh;
+      max-height: 200vh;
+      overflow: hidden;
     }
     .continue-button {
       display: none;
     }
-    .passport-page {
-      overflow: hidden;
+    .passport-page-agelimit .passport-page-background {
+      left: -2rem;
+    }
+    .passport-page-screentime .passport-page-background {
+      left: -2rem;
     }
     .passport-page:nth-of-type(1) {
       place-self: center start;
