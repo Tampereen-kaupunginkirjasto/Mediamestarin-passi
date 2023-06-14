@@ -18,6 +18,8 @@ const stampToolImage = document.querySelector('.passport-stamp-tool img');
 const stampImage = document.querySelector('.passport-stamp-image');
 const stampArea = document.querySelector('.passport-stamp-area');
 
+const successSound = new Audio('assets/sound-success.mp3');
+const failureSound = new Audio('assets/sound-failure.mp3');
 const cameraSound = new Audio('assets/sound-camera.mp3');
 const stampSound = new Audio('assets/sound-stamp.mp3');
 
@@ -59,6 +61,7 @@ passportPageCover._passport = {
   },
 };
 function handleContinue() {
+  successSound.play();
   passportPageCover._passport.exit();
   passportPageAgelimit._passport.enter();
   history.pushState({page: 'cover'}, '');
@@ -71,11 +74,16 @@ function handleContinue() {
 // Success criteria
 //
 function checkSuccess() {
-  const everyCriteriaPassed = Object.values(successCriteria).every(criterion => criterion === true);
-  if (everyCriteriaPassed) {
+  if (successCriteria.hasName && successCriteria.hasImage && successCriteria.isStamped) {
+    stampTool.classList.add('active');
     continueButton.classList.add('active');
   }
+  else if (successCriteria.hasName && successCriteria.hasImage) {
+    stampTool.classList.add('active');
+    continueButton.classList.remove('active');
+  }
   else {
+    stampTool.classList.remove('active');
     continueButton.classList.remove('active');
   }
 }
@@ -248,6 +256,7 @@ function placeStamp() {
     stampImage.style.top = stampImageOriginalTop;
     stampImage.style.left = stampImageOriginalLeft;
     playStampErrorAnimation();
+    failureSound.play();
     return;
   }
   stampImage.style.opacity = '1';

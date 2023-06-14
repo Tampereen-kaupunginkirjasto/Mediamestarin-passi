@@ -4,6 +4,7 @@ const continueButton = document.querySelector('.passport-page-screentime .contin
 const activityElements = Array.from(document.querySelectorAll('.activity-select .activity'));
 const selectedActivityElements = Array.from(document.querySelectorAll('.selected-activities .activity'));
 const timeSlotsContainer = document.querySelector('.time-slots');
+const clickSound = new Audio('assets/sound-click.mp3');
 
 let selectedColor = '';
 
@@ -55,7 +56,7 @@ selectedActivityElements.forEach(activityElement => {
 //
 function handleTimeSlotClick(event) {
   const segmentElement = event.target.closest('.segment');
-  if (segmentElement === null) {
+  if (segmentElement === null || selectedColor === '') {
     return;
   }
   const previousColor = segmentElement.getAttribute('data-color');
@@ -74,4 +75,6 @@ function handleTimeSlotClick(event) {
       document.querySelector(`.selected-activities .activity[data-color="${previousColor}"]`).classList.remove('selected');
     }
   }
+  clickSound.currentTime = 0;
+  clickSound.play();
 }

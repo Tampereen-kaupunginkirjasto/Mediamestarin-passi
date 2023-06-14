@@ -2,6 +2,12 @@ const passportPageCover = document.querySelector('.passport-page-cover');
 const passportPageAgelimit = document.querySelector('.passport-page-agelimit');
 const passportPageMarketing = document.querySelector('.passport-page-marketing');
 const continueButton = document.querySelector('.passport-page-agelimit .continue-button');
+const successSound = new Audio('assets/sound-success.mp3');
+const failureSound = new Audio('assets/sound-failure.mp3');
+const clickSound = new Audio('assets/sound-click.mp3');
+
+let isFailureSoundPending = false;
+let isClickSoundPending = false;
 
 continueButton.addEventListener('click', handleContinue);
 
@@ -109,12 +115,14 @@ function customDragSortPredicate(item, event) {
     migrateAction: 'move',
   });
   if (result === null) {
+    isFailureSoundPending = false;
     return result;
   }
   if (allowedGridsForIcons[itemId].includes(result.grid)) {
     const isTargetGrid = allTargetGrids.includes(result.grid);
     if (isTargetGrid && result.grid.getItems().length >= 1) {
       // Allow only one item per target grid
+      isFailureSoundPending = true;
       return {
         index: -1,
         grid: initialGrid,
@@ -122,15 +130,32 @@ function customDragSortPredicate(item, event) {
       };
     }
     else {
+      isFailureSoundPending = false;
       return result;
     }
   }
+  isFailureSoundPending = true;
   return {
     index: -1,
     grid: initialGrid,
     action: 'move',
   };
 }
+
+//
+// Drag release sounds
+//
+allGrids.forEach(grid => grid.on('dragEnd', handleDragEnd));
+function handleDragEnd() {
+  if (isFailureSoundPending) {
+    failureSound.currentTime = 0;
+    failureSound.play();
+  }
+  else {
+    isClickSoundPending = true;
+  }
+}
+
 
 //
 // Success criteria
@@ -140,8 +165,14 @@ function checkSuccess() {
   const initialGridRemainingItemCount = document.querySelectorAll('.agelimit-initial-grid .agelimit-item').length;
   if (initialGridRemainingItemCount === 0) {
     continueButton.classList.add('active');
+    successSound.play();
   }
   else {
     continueButton.classList.remove('active');
+    if (isClickSoundPending) {
+      clickSound.currentTime = 0;
+      clickSound.play();
+    }
   }
+  isClickSoundPending = false;
 }
