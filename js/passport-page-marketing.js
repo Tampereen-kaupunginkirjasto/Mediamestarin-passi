@@ -9,6 +9,9 @@ const productSelectContainer = document.querySelector('.product-select');
 const argumentSelectContainer = document.querySelector('.argument-select');
 const argumentStickers = Array.from(document.querySelectorAll('[data-phase="select-arguments"] .argument img'));
 const publishButton = document.querySelector('.passport-page-marketing .publish-button');
+const successSound = new Audio('assets/sound-success.mp3');
+const clickSound = new Audio('assets/sound-click.mp3');
+const publishSound = new Audio('assets/sound-publish.mp3');
 
 let selectedCharacter = '';
 let selectedReaction = '';
@@ -34,6 +37,7 @@ passportPageMarketing._passport = {
   },
 };
 function handleContinue() {
+  successSound.play();
   passportPageMarketing._passport.exit();
   passportPageScreentime._passport.enter();
   history.pushState({page: 'marketing'}, '');
@@ -53,6 +57,8 @@ function handleCharacterSelect(event) {
   argumentSelectPhaseContainer.setAttribute('data-selected-character', selectedCharacter);
   characterSelectPhaseContainer.classList.remove('active');
   productSelectPhaseContainer.classList.add('active');
+  clickSound.currentTime = 0;
+  clickSound.play();
 }
 
 //
@@ -69,6 +75,8 @@ function handleProductSelect(event) {
   productSelectPhaseContainer.classList.remove('active');
   argumentSelectPhaseContainer.classList.add('active');
   publishButton.style.display = '';
+  clickSound.currentTime = 0;
+  clickSound.play();
 }
 
 //
@@ -89,6 +97,10 @@ argumentStickers.forEach(argumentSticker => {
     argumentSticker.style.position = 'absolute';
     this.handleDragStart();
     argumentSticker.closest('.argument').classList.add('was-dragged');
+  }
+  function handleDragEnd(event, pointer) {
+    clickSound.currentTime = 0;
+    clickSound.play();
   }
   function setRemLeftTop() {
     const { x, y } = this.position;
@@ -112,6 +124,7 @@ argumentStickers.forEach(argumentSticker => {
   // TODO: Prevent dragging to an invalid position. Reset with an animation.
   const draggie = new Draggabilly(argumentSticker);
   draggie.once('dragStart', handleInitialDrag);
+  draggie.on('dragEnd', handleDragEnd);
   draggie.on('dragStart', updateZIndex);
   draggie.setLeftTop = setRemLeftTop;
   argumentSticker._draggie = draggie;
@@ -130,7 +143,10 @@ argumentStickers.forEach(argumentSticker => {
 function handlePublish() {
   argumentSelectPhaseContainer.setAttribute('data-selected-reaction', selectedReaction);
   publishButton.style.display = 'none';
-  setTimeout(() => continueButton.classList.add('active'), 2000);
+  publishSound.play();
+  setTimeout(() => {
+    continueButton.classList.add('active');
+  }, 1500);
 }
 function convertPixelsToRem(px) {
   const remBase = parseFloat(getComputedStyle(document.documentElement).fontSize);
