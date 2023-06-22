@@ -1,0 +1,19 @@
+
+@layer hidden-elements {
+  @media screen {
+    .completion-page:not(.active) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+@layer print {
+  @media print {
+    .completion-page {
+      display: none;
+    }
+  }
+}

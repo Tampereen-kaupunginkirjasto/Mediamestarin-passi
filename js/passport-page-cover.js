@@ -2,6 +2,7 @@ const passportPageCover = document.querySelector('.passport-page-cover');
 const passportPageAgelimit = document.querySelector('.passport-page-agelimit');
 const passportPageMarketing = document.querySelector('.passport-page-marketing');
 const passportPageScreentime = document.querySelector('.passport-page-screentime');
+const completionPage = document.querySelector('.completion-page');
 const continueButton = document.querySelector('.passport-page-cover .continue-button');
 
 const passportImageContainer = document.querySelector('.passport-image-container');
@@ -353,4 +354,8 @@ else if (queryParams.get('page') == '3') {
 else if (queryParams.get('page') == '4') {
   passportPageCover._passport.exit();
   setTimeout(() => { passportPageScreentime._passport.enter(); }, 1000);
+}
+else if (queryParams.get('page') == '5') {
+  passportPageCover._passport.exit();
+  setTimeout(() => { completionPage._passport.enter(); }, 1000);
 }

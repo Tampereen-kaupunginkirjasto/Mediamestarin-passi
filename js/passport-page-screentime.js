@@ -1,13 +1,16 @@
 const passportPageMarketing = document.querySelector('.passport-page-marketing');
 const passportPageScreentime = document.querySelector('.passport-page-screentime');
+const completionPage = document.querySelector('.completion-page');
 const continueButton = document.querySelector('.passport-page-screentime .continue-button');
 const activityElements = Array.from(document.querySelectorAll('.activity-select .activity'));
 const selectedActivityElements = Array.from(document.querySelectorAll('.selected-activities .activity'));
 const timeSlotsContainer = document.querySelector('.time-slots');
 const clickSound = new Audio('assets/sound-click.mp3');
+const completedSound = new Audio('assets/sound-completed.mp3');
 
 let selectedColor = '';
 
+continueButton.classList.add('active');
 continueButton.addEventListener('click', handleContinue);
 timeSlotsContainer.addEventListener('click', handleTimeSlotClick);
 
@@ -27,7 +30,10 @@ passportPageScreentime._passport = {
   },
 };
 function handleContinue() {
-  // Print passport
+  completedSound.play();
+  passportPageScreentime._passport.exit();
+  completionPage._passport.enter();
+  history.pushState({page: 'screentime'}, '');
 }
 function handleBack() {
   passportPageScreentime._passport.exit();
