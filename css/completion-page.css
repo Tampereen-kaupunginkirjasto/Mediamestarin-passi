@@ -1,4 +1,10 @@
-
+.completion-page {
+  grid-area: 1 / 1 / 1 / 3;
+}
+.print-button {
+  font-size: 20rem;
+  background: transparent;
+}
 @layer hidden-elements {
   @media screen {
     .completion-page:not(.active) {

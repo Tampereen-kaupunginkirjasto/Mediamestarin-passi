@@ -158,27 +158,31 @@
     <div class="passport-page passport-page-screentime">
       <img class="passport-page-background" src="assets/passport-page-screentime.png" draggable="false">
       <div class="activity-select">
-        <div class="activity" data-color="color-01"><img src="assets/activity-daycare.png" draggable="false"></div>
-        <div class="activity" data-color="color-02"><img src="assets/activity-eveningroutine.png" draggable="false"></div>
-        <div class="activity" data-color="color-03"><img src="assets/activity-hobbiesculture.png" draggable="false"></div>
-        <div class="activity" data-color="color-04"><img src="assets/activity-mealtime.png" draggable="false"></div>
-        <div class="activity" data-color="color-05"><img src="assets/activity-morningroutine.png" draggable="false"></div>
-        <div class="activity" data-color="color-06"><img src="assets/activity-physicalactivities.png" draggable="false"></div>
-        <div class="activity" data-color="color-07"><img src="assets/activity-playtime.png" draggable="false"></div>
-        <div class="activity" data-color="color-08"><img src="assets/activity-preschool.png" draggable="false"></div>
-        <div class="activity" data-color="color-09"><img src="assets/activity-screentime.png" draggable="false"></div>
-        <div class="activity" data-color="color-10"><img src="assets/activity-snack.png" draggable="false"></div>
-        <div class="activity" data-color="color-11"><img src="assets/activity-socialactivities.png" draggable="false"></div>
+        <div class="activity-select-section active">
+          <div class="activity" data-color="color-02"><img src="assets/activity-eveningroutine.png" draggable="false"></div>
+          <div class="activity" data-color="color-04"><img src="assets/activity-mealtime.png" draggable="false"></div>
+          <div class="activity" data-color="color-05"><img src="assets/activity-morningroutine.png" draggable="false"></div>
+          <div class="activity" data-color="color-08"><img src="assets/activity-preschool.png" draggable="false"></div>
+        </div>
+        <div class="activity-select-section section-optional">
+          <div class="activity" data-color="color-01"><img src="assets/activity-daycare.png" draggable="false"></div>
+          <div class="activity" data-color="color-03"><img src="assets/activity-hobbiesculture.png" draggable="false"></div>
+          <div class="activity" data-color="color-06"><img src="assets/activity-physicalactivities.png" draggable="false"></div>
+          <div class="activity" data-color="color-07"><img src="assets/activity-playtime.png" draggable="false"></div>
+          <div class="activity" data-color="color-09"><img src="assets/activity-screentime.png" draggable="false"></div>
+          <div class="activity" data-color="color-10"><img src="assets/activity-snack.png" draggable="false"></div>
+          <div class="activity" data-color="color-11"><img src="assets/activity-socialactivities.png" draggable="false"></div>
+        </div>
       </div>
       <div class="selected-activities">
         <div class="activity" data-color="color-01"><img src="assets/activity-daycare.png" draggable="false"></div>
-        <div class="activity" data-color="color-02"><img src="assets/activity-eveningroutine.png" draggable="false"></div>
+        <div class="activity" data-color="color-02" data-required><img src="assets/activity-eveningroutine.png" draggable="false"></div>
         <div class="activity" data-color="color-03"><img src="assets/activity-hobbiesculture.png" draggable="false"></div>
-        <div class="activity" data-color="color-04"><img src="assets/activity-mealtime.png" draggable="false"></div>
-        <div class="activity" data-color="color-05"><img src="assets/activity-morningroutine.png" draggable="false"></div>
+        <div class="activity" data-color="color-04" data-required><img src="assets/activity-mealtime.png" draggable="false"></div>
+        <div class="activity" data-color="color-05" data-required><img src="assets/activity-morningroutine.png" draggable="false"></div>
         <div class="activity" data-color="color-06"><img src="assets/activity-physicalactivities.png" draggable="false"></div>
         <div class="activity" data-color="color-07"><img src="assets/activity-playtime.png" draggable="false"></div>
-        <div class="activity" data-color="color-08"><img src="assets/activity-preschool.png" draggable="false"></div>
+        <div class="activity" data-color="color-08" data-required><img src="assets/activity-preschool.png" draggable="false"></div>
         <div class="activity" data-color="color-09"><img src="assets/activity-screentime.png" draggable="false"></div>
         <div class="activity" data-color="color-10"><img src="assets/activity-snack.png" draggable="false"></div>
         <div class="activity" data-color="color-11"><img src="assets/activity-socialactivities.png" draggable="false"></div>
@@ -218,7 +222,7 @@
     </div>
 
     <div class="completion-page">
-      <button class="print-button">Tulosta</button>
+      <button class="print-button">🖨️</button>
     </div>
 
     <script src="vendor/muuri-0.9.5.min.js"></script>
