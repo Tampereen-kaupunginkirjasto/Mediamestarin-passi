@@ -57,7 +57,7 @@
     z-index: 5;
   }
   .continue-button img {
-    width: 15rem;
+    width: 20rem;
   }
 }
 @layer hidden-elements {
@@ -68,6 +68,7 @@
       left: 0;
       opacity: 0;
       pointer-events: none;
+      overflow: hidden;
     }
     .continue-button:not(.active) {
       opacity: 0;

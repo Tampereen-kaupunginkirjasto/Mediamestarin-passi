@@ -11,6 +11,7 @@ const snapshotElement = document.querySelector('.passport-image-snapshot');
 const flashEffectElement = document.querySelector('.passport-image-flash');
 const captureButton = document.querySelector('.passport-image-button');
 const offscreenCanvas = document.createElement('canvas');
+const spacebarGuideElement = document.querySelector('.spacebar-guide');
 
 const nameInput = document.querySelector('.passport-name-input');
 
@@ -42,6 +43,7 @@ document.addEventListener('keyup', handleCapture);
 continueButton.addEventListener('click', handleContinue);
 stampTool.addEventListener('click', handleStampClick);
 nameInput.addEventListener('input', _event => {
+  spacebarGuideElement.classList.remove('active');
   successCriteria.hasName = nameInput.value.length >= 1;
   checkSuccess();
 });
@@ -185,6 +187,7 @@ function initVideo() {
     videoElement.srcObject = stream;
     videoElement.play();
     videoTrack = stream.getTracks()[0];
+    spacebarGuideElement.classList.add('active');
   })
   .catch(err => {
     console.error(`An error occurred: ${err}`);
@@ -248,10 +251,10 @@ function placeStamp() {
   const stampImagePosition = stampImage.getBoundingClientRect();
   const stampAreaPosition = stampArea.getBoundingClientRect();
   const isWithinStampArea = (
-    stampImagePosition.top >= stampAreaPosition.top
-    &&stampImagePosition.left >= stampAreaPosition.left
-    && stampImagePosition.right <= stampAreaPosition.right
-    && stampImagePosition.bottom <= stampAreaPosition.bottom
+    stampImagePosition.top + (stampImagePosition.height / 2) >= stampAreaPosition.top
+    && stampImagePosition.left + (stampImagePosition.width / 2) >= stampAreaPosition.left
+    && stampImagePosition.right - (stampImagePosition.width / 2) <= stampAreaPosition.right
+    && stampImagePosition.bottom - (stampImagePosition.height / 2) <= stampAreaPosition.bottom
   );
   if ( ! isWithinStampArea) {
     stampImage.style.top = stampImageOriginalTop;
@@ -260,6 +263,18 @@ function placeStamp() {
     failureSound.play();
     return;
   }
+  const clampedTop = (
+    top
+    + Math.max(stampAreaPosition.top - stampImagePosition.top, 0)
+    + Math.min(stampAreaPosition.bottom - stampImagePosition.bottom, 0)
+  );
+  const clampedLeft = (
+    left
+    + Math.max(stampAreaPosition.left - stampImagePosition.left, 0)
+    + Math.min(stampAreaPosition.right - stampImagePosition.right, 0)
+  );
+  stampImage.style.top = `${clampedTop / containerDimensions.height * 100}%`;
+  stampImage.style.left = `${clampedLeft / containerDimensions.width * 100}%`;
   stampImage.style.opacity = '1';
   isStampHeld = false;
   passportPageCover.classList.remove('is-stamp-held');

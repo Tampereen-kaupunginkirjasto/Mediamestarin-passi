@@ -8,7 +8,7 @@
     left: 100%;
     /* Fill available space between container and window edge */
     width: calc(75vw - 50%);
-    max-width: 50%;
+    max-width: 60%;
     min-height: calc(100% - 1rem);
   }
   .agelimit-item {
