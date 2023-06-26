@@ -1,10 +1,14 @@
 const passportPageMarketing = document.querySelector('.passport-page-marketing');
 const passportPageScreentime = document.querySelector('.passport-page-screentime');
+const completionPage = document.querySelector('.completion-page');
 const continueButton = document.querySelector('.passport-page-screentime .continue-button');
+const activityContainerOptional = document.querySelector('.activity-select-section.section-optional');
 const activityElements = Array.from(document.querySelectorAll('.activity-select .activity'));
+const selectedActivitiesContainer = document.querySelector('.selected-activities');
 const selectedActivityElements = Array.from(document.querySelectorAll('.selected-activities .activity'));
 const timeSlotsContainer = document.querySelector('.time-slots');
 const clickSound = new Audio('assets/sound-click.mp3');
+const completedSound = new Audio('assets/sound-completed.mp3');
 
 let selectedColor = '';
 
@@ -27,7 +31,10 @@ passportPageScreentime._passport = {
   },
 };
 function handleContinue() {
-  // Print passport
+  completedSound.play();
+  passportPageScreentime._passport.exit();
+  completionPage._passport.enter();
+  history.pushState({page: 'screentime'}, '');
 }
 function handleBack() {
   passportPageScreentime._passport.exit();
@@ -46,6 +53,7 @@ activityElements.forEach(activityElement => {
     timeSlotsContainer.setAttribute('data-color', selectedColor);
   }
   activityElement.insertAdjacentHTML('afterbegin', '<div class="activity-highlight"></div>');
+  checkSuccess();
 });
 selectedActivityElements.forEach(activityElement => {
   activityElement.insertAdjacentHTML('afterbegin', '<div class="activity-highlight"></div>');
@@ -77,4 +85,49 @@ function handleTimeSlotClick(event) {
   }
   clickSound.currentTime = 0;
   clickSound.play();
+  checkSuccess();
+}
+
+//
+// Success criteria
+//
+function checkSuccess() {
+  // All required activities selected
+  const requiredActivityCount = document.querySelectorAll('.selected-activities .activity[data-required]').length;
+  let selectedActivityCount = 0;
+  let selectedRequiredActivityCount = 0;
+  selectedActivityElements.forEach(activityElement => {
+    const isSelected = activityElement.classList.contains('selected');
+    if (isSelected) {
+      selectedActivityCount += 1;
+    }
+    if (isSelected && activityElement.hasAttribute('data-required')) {
+      selectedRequiredActivityCount += 1;
+    }
+  });
+  // All segments colored
+  const segmentCount = document.querySelectorAll('.time-slots .segment').length;
+  const coloredSegmentCount = document.querySelectorAll('.time-slots .segment[data-color]').length;
+  const isRequiredDone = selectedRequiredActivityCount == requiredActivityCount;
+  // Fit more than 10 activities
+  if (selectedActivityCount > 10) {
+    selectedActivitiesContainer.classList.add('compact');
+  }
+  else {
+    selectedActivitiesContainer.classList.remove('compact');
+  }
+  // Optional section visibility
+  if (isRequiredDone) {
+    activityContainerOptional.classList.add('active');
+  }
+  else {
+    activityContainerOptional.classList.remove('active');
+  }
+  const isSuccess = isRequiredDone && coloredSegmentCount == segmentCount;
+  if (isSuccess) {
+    continueButton.classList.add('active');
+  }
+  else {
+    continueButton.classList.remove('active');
+  }
 }

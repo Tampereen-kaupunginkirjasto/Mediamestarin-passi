@@ -8,6 +8,14 @@
     width: calc(100% + 3.6rem);
     pointer-events: none;
   }
+  .marketing-phone-sticker-area {
+    position: absolute;
+    left: 7rem;
+    top: 4rem;
+    width: 39rem;
+    height: 65rem;
+    pointer-events: none;
+  }
   /* Character selection phase */
   [data-phase="select-character"] .marketing-character {
     position: absolute;

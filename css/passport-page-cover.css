@@ -65,6 +65,15 @@
     opacity: 0;
     background: #fff;
   }
+  .spacebar-guide {
+    position: absolute;
+    left: calc(100%);
+    /* Fill available space between container and window edge */
+    width: calc(75vw - 50%);
+    height: 60%;
+    object-fit: contain;
+    transition: opacity 500ms ease 1s;
+  }
   /* Name */
   .passport-name-input {
     position: relative;
@@ -87,13 +96,13 @@
   /* Stamping */
   .passport-stamp-tool {
     position: absolute;
-    top: 10rem;
+    top: 50rem;
     left: calc(100% + 4rem);
-    transition: opacity 200ms ease;
+    transition: opacity 200ms ease 500ms;
     cursor: pointer;
   }
   .passport-stamp-tool img {
-    width: 10rem;
+    width: 20rem;
     user-select: none;
   }
   .is-stamp-held .passport-stamp-tool {
@@ -108,7 +117,7 @@
     pointer-events: none;
   }
   .passport-stamp-image img {
-    width: 10rem;
+    width: 17rem;
   }
   .passport-stamp-area {
     opacity: 0;
@@ -127,14 +136,16 @@
   }
 }
 @layer hidden-elements {
-  .passport-stamp-tool:not(.active) {
+  .passport-stamp-tool:not(.active),
+  .spacebar-guide:not(.active) {
     opacity: 0;
     pointer-events: none;
   }
 }
 @layer print {
   @media print {
-    .passport-stamp-tool  {
+    .passport-stamp-tool,
+    .spacebar-guide {
       display: none;
     }
   }

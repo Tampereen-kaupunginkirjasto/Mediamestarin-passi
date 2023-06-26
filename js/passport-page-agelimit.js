@@ -51,6 +51,11 @@ const targetGridOptions = {
   dragEnabled: true,
   dragSort: () => allGrids,
   dragSortPredicate: customDragSortPredicate,
+  dragRelease: {
+    duration: 0,
+    easing: 'ease',
+    useDragContainer: true,
+  },
 };
 const targetGrids = {
   // Person 1
@@ -97,8 +102,8 @@ allowedGridsForIcons['icon-5'] = [initialGrid, ...person3Grids];
 allowedGridsForIcons['icon-6'] = [initialGrid, ...person3Grids];
 allowedGridsForIcons['icon-7'] = [initialGrid, ...person2Grids, ...person3Grids];
 allowedGridsForIcons['icon-8'] = [initialGrid, ...person3Grids];
-allowedGridsForIcons['icon-9'] = [initialGrid, ...person2Grids, ...person3Grids];
-allowedGridsForIcons['icon-10'] = [initialGrid, ...person1Grids, ...person2Grids, ...person3Grids];
+allowedGridsForIcons['icon-9'] = [initialGrid, ...person3Grids];
+allowedGridsForIcons['icon-10'] = [initialGrid, ...person2Grids, ...person3Grids];
 
 function getAllowedGridsForItem(item) {
   const iconId = item.getElement().getAttribute('data-id');
@@ -143,10 +148,10 @@ function customDragSortPredicate(item, event) {
 }
 
 //
-// Drag release sounds
+// Drag release sounds and scaling
 //
 allGrids.forEach(grid => grid.on('dragEnd', handleDragEnd));
-function handleDragEnd() {
+function handleDragEnd(item) {
   if (isFailureSoundPending) {
     failureSound.currentTime = 0;
     failureSound.play();
@@ -154,16 +159,46 @@ function handleDragEnd() {
   else {
     isClickSoundPending = true;
   }
+  setTimeout(() => initialGrid.refreshItems([item]).layout(), 100);
 }
-
 
 //
 // Success criteria
 //
 allGrids.forEach(grid => grid.on('dragReleaseEnd', checkSuccess));
 function checkSuccess() {
-  const initialGridRemainingItemCount = document.querySelectorAll('.agelimit-initial-grid .agelimit-item').length;
-  if (initialGridRemainingItemCount === 0) {
+  function isSuccess() {
+    const minimumItemCountPerPerson = 2;
+    let person1ItemCount = 0;
+    let person2ItemCount = 0;
+    let person3ItemCount = 0;
+    for (const targetGrid of person1Grids) {
+      person1ItemCount += targetGrid.getItems().length;
+    }
+    if (person1ItemCount < minimumItemCountPerPerson) {
+      return false;
+    }
+    for (const targetGrid of person2Grids) {
+      person2ItemCount += targetGrid.getItems().length;
+    }
+    if (person2ItemCount < minimumItemCountPerPerson) {
+      return false;
+    }
+    for (const targetGrid of person3Grids) {
+      person3ItemCount += targetGrid.getItems().length;
+    }
+    if (person3ItemCount < minimumItemCountPerPerson) {
+      return false;
+    }
+    const requiredIcons = '[data-id="icon-1"], [data-id="icon-2"], [data-id="icon-3"]';
+    const ageSymbolsInInitialGridCount = document.querySelectorAll(`.agelimit-initial-grid .agelimit-item:is(${requiredIcons})`).length;
+    // All age symbols must be dragged
+    if (ageSymbolsInInitialGridCount === 0) {
+      return true;
+    }
+    return false;
+  }
+  if (isSuccess()) {
     continueButton.classList.add('active');
     successSound.play();
   }
