@@ -8,8 +8,10 @@ const argumentSelectPhaseContainer = document.querySelector('.marketing-page-pha
 const productSelectContainer = document.querySelector('.product-select');
 const argumentSelectContainer = document.querySelector('.argument-select');
 const argumentStickers = Array.from(document.querySelectorAll('[data-phase="select-arguments"] .argument img'));
+const argumentStickerArea = document.querySelector('.marketing-phone-sticker-area');
 const publishButton = document.querySelector('.passport-page-marketing .publish-button');
 const successSound = new Audio('assets/sound-success.mp3');
+const failureSound = new Audio('assets/sound-failure.mp3');
 const clickSound = new Audio('assets/sound-click.mp3');
 const publishSound = new Audio('assets/sound-publish.mp3');
 
@@ -99,8 +101,23 @@ argumentStickers.forEach(argumentSticker => {
     argumentSticker.closest('.argument').classList.add('was-dragged');
   }
   function handleDragEnd(event, pointer) {
-    clickSound.currentTime = 0;
-    clickSound.play();
+    // Validate sticker position
+    const argumentStickerPosition = argumentSticker.getBoundingClientRect();
+    const argumentStickerAreaPosition = argumentStickerArea.getBoundingClientRect();
+    const isWithinStickerArea = (
+      argumentStickerPosition.top >= argumentStickerAreaPosition.top
+      &&argumentStickerPosition.left >= argumentStickerAreaPosition.left
+      && argumentStickerPosition.right <= argumentStickerAreaPosition.right
+      && argumentStickerPosition.bottom <= argumentStickerAreaPosition.bottom
+    );
+    if (isWithinStickerArea) {
+      clickSound.currentTime = 0;
+      clickSound.play();
+    }
+    else {
+      failureSound.play();
+      resetSticker();
+    }
   }
   function setRemLeftTop() {
     const { x, y } = this.position;
@@ -113,15 +130,15 @@ argumentStickers.forEach(argumentSticker => {
     argumentSticker.style.zIndex = stickerZIndexCounter;
   }
   function resetSticker() {
+    // TODO: Animate reset from current position to initial position.
     argumentSticker.style.transform = '';
     argumentSticker.style.position = '';
+    argumentSticker.style.top = '';
     argumentSticker.style.left = '';
-    argumentSticker.style.right = '';
     argumentSticker.style.zIndex = '';
     argumentSticker.closest('.argument').classList.remove('was-dragged');
     draggie.once('dragStart', handleInitialDrag);
   }
-  // TODO: Prevent dragging to an invalid position. Reset with an animation.
   const draggie = new Draggabilly(argumentSticker);
   draggie.once('dragStart', handleInitialDrag);
   draggie.on('dragEnd', handleDragEnd);
