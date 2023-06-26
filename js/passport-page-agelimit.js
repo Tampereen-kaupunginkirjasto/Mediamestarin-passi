@@ -51,6 +51,11 @@ const targetGridOptions = {
   dragEnabled: true,
   dragSort: () => allGrids,
   dragSortPredicate: customDragSortPredicate,
+  dragRelease: {
+    duration: 0,
+    easing: 'ease',
+    useDragContainer: true,
+  },
 };
 const targetGrids = {
   // Person 1
@@ -143,10 +148,10 @@ function customDragSortPredicate(item, event) {
 }
 
 //
-// Drag release sounds
+// Drag release sounds and scaling
 //
 allGrids.forEach(grid => grid.on('dragEnd', handleDragEnd));
-function handleDragEnd() {
+function handleDragEnd(item) {
   if (isFailureSoundPending) {
     failureSound.currentTime = 0;
     failureSound.play();
@@ -154,8 +159,8 @@ function handleDragEnd() {
   else {
     isClickSoundPending = true;
   }
+  setTimeout(() => initialGrid.refreshItems([item]).layout(), 100);
 }
-
 
 //
 // Success criteria

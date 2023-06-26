@@ -5,10 +5,9 @@
   .agelimit-initial-grid {
     position: absolute;
     top: 1rem;
-    left: 100%;
+    left: calc(100% + 2rem);
     /* Fill available space between container and window edge */
-    width: calc(75vw - 50%);
-    max-width: 60%;
+    width: calc(75vw - 50% - 3rem);
     min-height: calc(100% - 1rem);
   }
   .agelimit-item {
@@ -17,6 +16,9 @@
     width: 6.5rem;
     height: 6.5rem;
     margin: 0.35rem;
+  }
+  .agelimit-initial-grid .agelimit-item {
+    margin: 4rem;
   }
   .agelimit-item.muuri-item-dragging {
     z-index: 3;
@@ -32,6 +34,11 @@
   .agelimit-item img {
     width: 100%;
     height: auto;
+    transform-origin: center;
+    transition: transform 200ms ease;
+  }
+  .agelimit-initial-grid .agelimit-item:not(.muuri-item-dragging) img {
+    transform: scale(2);
   }
   /* Drag target containers */
   .agelimit-target-grid {
