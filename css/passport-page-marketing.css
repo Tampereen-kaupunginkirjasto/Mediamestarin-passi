@@ -174,8 +174,15 @@
     [data-phase="select-character"],
     [data-phase="select-product"],
     [data-phase="select-arguments"] .reaction-character,
-    [data-phase="select-arguments"] .argument:not(.was-dragged) {
+    [data-phase="select-arguments"] .argument:not(.was-dragged),
+    .publish-button {
       display: none;
+    }
+    .argument-select {
+      width: 0;
+      height: 0;
+      padding: 0;
+      display: block;
     }
   }
 }
