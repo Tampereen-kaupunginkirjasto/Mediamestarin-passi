@@ -3,6 +3,7 @@
 }
 .print-button {
   font-size: 20rem;
+  border: 0;
   background: transparent;
 }
 @layer hidden-elements {

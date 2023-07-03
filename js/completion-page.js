@@ -2,7 +2,7 @@ const passportPageScreentime = document.querySelector('.passport-page-screentime
 const completionPage = document.querySelector('.completion-page');
 const printButton = document.querySelector('.print-button');
 
-printButton.addEventListener('click', handlePrint);
+new Hammer(printButton).on('doubletap', handlePrint);
 
 //
 // Page transitions
