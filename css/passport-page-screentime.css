@@ -107,13 +107,11 @@
   .time-slots .segment[data-color]:hover {
     fill: rgb(var(--fill-color) / .8);
   }
-  .screen-time-agreement {
+  .screentime-agreement {
     position: relative;
-    flex-grow: 1;
-    width: calc(100% - 3rem);
-    height: 0;
-    margin-top: 2rem;
-    border: 0.3rem solid rgb(113 115 140 / .7);
+    width: 39rem;
+    height: auto;
+    margin: 1rem -1.5rem -1.5rem -1.5rem;
     mix-blend-mode: multiply;
   }
   .passport-page-screentime [data-color="color-01"] { --fill-color: 136 204 238; }
