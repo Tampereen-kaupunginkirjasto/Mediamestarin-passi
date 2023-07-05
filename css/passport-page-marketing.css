@@ -7,6 +7,17 @@
     top: 1rem;
     width: calc(100% + 3.6rem);
     pointer-events: none;
+    z-index: 1;
+  }
+  .marketing-phone-background-color {
+    position: absolute;
+    left: 9rem;
+    top: 5rem;
+    width: 35rem;
+    height: 61rem;
+    pointer-events: none;
+    background-color: rgb(var(--fill-color) / 1);
+    z-index: 1;
   }
   .marketing-phone-sticker-area {
     position: absolute;
@@ -96,7 +107,7 @@
     max-width: calc(140% + 6rem);
     height: 100%;
     padding: 3rem;
-    z-index: 2;
+    z-index: 3;
   }
   [data-phase="select-arguments"] .argument {
     --sticker-width: 10rem;
@@ -107,7 +118,7 @@
     position: relative;
     width: var(--sticker-width);
     cursor: grab;
-    z-index: 2;
+    z-index: 3;
   }
   [data-phase="select-arguments"] .argument .argument-shadow {
     position: absolute;
@@ -125,14 +136,37 @@
     top: 15rem;
     left: 8rem;
     width: 38rem;
-    z-index: 1;
+    z-index: 2;
+  }
+  .marketing-page-color-select {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 6rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .marketing-page-color-button {
+    box-sizing: content-box;
+    width: 8rem;
+    height: 8rem;
+    margin: -0.6rem;
+    background-color: rgb(var(--fill-color) / 1);
+    border: 0.6rem solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .marketing-page-color-button.selected {
+    border-color: rgb(0 0 0 / 0.6);
   }
   .reaction-character {
     position: absolute;
     left: 70%;
     bottom: 1rem;
     width: 30rem;
-    z-index: 1;
+    z-index: 2;
   }
   .publish-button {
     position: absolute;
@@ -149,6 +183,13 @@
   .publish-button img {
     width: 15rem;
   }
+  .passport-page-marketing { --fill-color: 255 255 255; }
+  .passport-page-marketing [data-color="color-01"] { --fill-color: 252 232 181; }
+  .passport-page-marketing [data-color="color-02"] { --fill-color: 173 188 217; }
+  .passport-page-marketing [data-color="color-03"] { --fill-color: 183 214 180; }
+  .passport-page-marketing [data-color="color-04"] { --fill-color: 252 129 131; }
+  .passport-page-marketing [data-color="color-05"] { --fill-color: 251 172 139; }
+  .passport-page-marketing [data-color="color-06"] { --fill-color: 220 197 253; }
 }
 @layer hidden-elements {
   .marketing-page-phase:not(.active),
@@ -175,6 +216,7 @@
     [data-phase="select-product"],
     [data-phase="select-arguments"] .reaction-character,
     [data-phase="select-arguments"] .argument:not(.was-dragged),
+    .marketing-page-color-select,
     .publish-button {
       display: none;
     }

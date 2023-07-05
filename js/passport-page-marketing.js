@@ -9,6 +9,8 @@ const productSelectContainer = document.querySelector('.product-select');
 const argumentSelectContainer = document.querySelector('.argument-select');
 const argumentStickers = Array.from(document.querySelectorAll('[data-phase="select-arguments"] .argument img'));
 const argumentStickerArea = document.querySelector('.marketing-phone-sticker-area');
+const phoneBackgroundColorElement = document.querySelector('.marketing-phone-background-color');
+const colorSelectContainer = document.querySelector('.marketing-page-color-select');
 const publishButton = document.querySelector('.passport-page-marketing .publish-button');
 const successSound = new Audio('assets/sound-success.mp3');
 const failureSound = new Audio('assets/sound-failure.mp3');
@@ -21,6 +23,7 @@ let selectedReaction = '';
 new Hammer(continueButton).on('doubletap', handleContinue);
 characterSelectPhaseContainer.addEventListener('click', handleCharacterSelect);
 productSelectContainer.addEventListener('click', handleProductSelect);
+colorSelectContainer.addEventListener('click', handleColorSelect);
 new Hammer(publishButton).on('doubletap', handlePublish);
 
 //
@@ -168,4 +171,27 @@ function handlePublish() {
 function convertPixelsToRem(px) {
   const remBase = parseFloat(getComputedStyle(document.documentElement).fontSize);
   return px * (1 / remBase);
+}
+
+//
+// Background color select
+//
+
+function handleColorSelect(event) {
+  const colorElement = event.target.closest('[data-color]');
+  if ( ! colorElement) {
+    return;
+  }
+  if (colorElement.classList.contains('selected')) {
+    colorElement.classList.remove('selected');
+    phoneBackgroundColorElement.removeAttribute('data-color');
+    return;
+  }
+  const previouslySelected = passportPageMarketing.querySelector('.marketing-page-color-button.selected');
+  if (previouslySelected) {
+    previouslySelected.classList.remove('selected')
+  }
+  colorElement.classList.add('selected');
+  const selectedColor = colorElement.getAttribute('data-color');
+  phoneBackgroundColorElement.setAttribute('data-color', selectedColor);
 }
