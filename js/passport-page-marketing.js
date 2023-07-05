@@ -18,10 +18,10 @@ const publishSound = new Audio('assets/sound-publish.mp3');
 let selectedCharacter = '';
 let selectedReaction = '';
 
-continueButton.addEventListener('click', handleContinue);
+new Hammer(continueButton).on('doubletap', handleContinue);
 characterSelectPhaseContainer.addEventListener('click', handleCharacterSelect);
 productSelectContainer.addEventListener('click', handleProductSelect);
-publishButton.addEventListener('click', handlePublish);
+new Hammer(publishButton).on('doubletap', handlePublish);
 
 //
 // Page transitions

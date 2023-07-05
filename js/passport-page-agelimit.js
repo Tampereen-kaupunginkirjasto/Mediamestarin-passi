@@ -9,7 +9,7 @@ const clickSound = new Audio('assets/sound-click.mp3');
 let isFailureSoundPending = false;
 let isClickSoundPending = false;
 
-continueButton.addEventListener('click', handleContinue);
+new Hammer(continueButton).on('doubletap', handleContinue);
 
 //
 // Page transitions

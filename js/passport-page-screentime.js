@@ -12,7 +12,7 @@ const completedSound = new Audio('assets/sound-completed.mp3');
 
 let selectedColor = '';
 
-continueButton.addEventListener('click', handleContinue);
+new Hammer(continueButton).on('doubletap', handleContinue);
 timeSlotsContainer.addEventListener('click', handleTimeSlotClick);
 
 //
