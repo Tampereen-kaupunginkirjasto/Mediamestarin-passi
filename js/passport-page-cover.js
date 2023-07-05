@@ -40,7 +40,7 @@ passportImageContainer.style.cursor = 'pointer';
 passportImageContainer.addEventListener('click', initVideo);
 captureButton.addEventListener('click', handleCapture);
 document.addEventListener('keyup', handleCapture);
-continueButton.addEventListener('click', handleContinue);
+new Hammer(continueButton).on('doubletap', handleContinue);
 stampTool.addEventListener('click', handleStampClick);
 nameInput.addEventListener('input', _event => {
   spacebarGuideElement.classList.remove('active');
@@ -188,6 +188,7 @@ function initVideo() {
     videoElement.play();
     videoTrack = stream.getTracks()[0];
     spacebarGuideElement.classList.add('active');
+    new Hammer(passportImageContainer).on('doubletap', handleCapture);
   })
   .catch(err => {
     console.error(`An error occurred: ${err}`);
