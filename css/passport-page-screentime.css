@@ -5,6 +5,17 @@
     align-items: center;
     padding: 2rem .8rem 4rem 0;
   }
+  .screentime-page-illustration {
+    position: absolute;
+    left: calc(100% + 1rem);
+    bottom: 3rem;
+    width: 28rem;
+  }
+  @media (max-aspect-ratio: 15.5/9) {
+    .screentime-page-illustration {
+      display: none;
+    }
+  }
   .activity-select {
     position: absolute;
     left: 100%;
@@ -30,8 +41,8 @@
   }
   .activity-select .activity {
     --fill-color: 255 255 255;
-    --activity-icon-width: 22rem;
-    --activity-icon-height: 22rem;
+    --activity-icon-width: 19.5rem;
+    --activity-icon-height: 19.5rem;
     width: var(--activity-icon-width);
     height: var(--activity-icon-height);
     margin: -2.5rem;
@@ -47,10 +58,10 @@
     cursor: pointer;
   }
   .activity-select .activity .activity-highlight:hover {
-    transform: scale(.64) scale(1.15);
+    transform: scale(.64) scale(1.1);
   }
   .activity-select .activity.selected .activity-highlight {
-    transform: scale(.64) scale(1.25);
+    transform: scale(.64) scale(1.2);
   }
   .activity-select .activity img {
     position: relative;
@@ -92,6 +103,7 @@
     position: relative;
     width: 50rem;
     height: auto;
+    z-index: 2;
   }
   .time-slots .segment {
     fill: rgb(208 179 148 / 0.5);
@@ -107,25 +119,29 @@
   .time-slots .segment[data-color]:hover {
     fill: rgb(var(--fill-color) / .8);
   }
+  .time-slots-illustration {
+    position: absolute;
+    bottom: 27rem;
+    width: 26rem;
+    z-index: 1;
+  }
   .screentime-agreement {
     position: relative;
-    width: 39rem;
+    width: 47rem;
     height: auto;
     margin: 1rem -1.5rem -1.5rem -1.5rem;
-    mix-blend-mode: multiply;
   }
-  .passport-page-screentime [data-color="color-01"] { --fill-color: 136 204 238; }
-  .passport-page-screentime [data-color="color-02"] { --fill-color: 204 102 119; }
-  .passport-page-screentime [data-color="color-03"] { --fill-color: 221 204 119; }
-  .passport-page-screentime [data-color="color-04"] { --fill-color: 17 119 51; }
-  .passport-page-screentime [data-color="color-05"] { --fill-color: 51 34 136; }
-  .passport-page-screentime [data-color="color-06"] { --fill-color: 170 68 153; }
-  .passport-page-screentime [data-color="color-07"] { --fill-color: 68 170 153; }
-  .passport-page-screentime [data-color="color-08"] { --fill-color: 153 153 51; }
-  .passport-page-screentime [data-color="color-09"] { --fill-color: 136 34 85; }
-  .passport-page-screentime [data-color="color-10"] { --fill-color: 102 17 0; }
-  .passport-page-screentime [data-color="color-11"] { --fill-color: 102 153 204; }
-  .passport-page-screentime [data-color="color-12"] { --fill-color: 136 136 136; }
+  .passport-page-screentime [data-color="color-01"] { --fill-color: 178 238 204; } /* activity-daycare */
+  .passport-page-screentime [data-color="color-02"] { --fill-color:  52  84 135; } /* activity-eveningroutine */
+  .passport-page-screentime [data-color="color-03"] { --fill-color: 174 135 228; } /* activity-hobbiesculture */
+  .passport-page-screentime [data-color="color-04"] { --fill-color: 184  60  50; } /* activity-mealtime */
+  .passport-page-screentime [data-color="color-05"] { --fill-color: 255 214  98; } /* activity-morningroutine */
+  .passport-page-screentime [data-color="color-06"] { --fill-color: 144 177 212; } /* activity-physicalactivities */
+  .passport-page-screentime [data-color="color-07"] { --fill-color: 235 115  62; } /* activity-playtime */
+  .passport-page-screentime [data-color="color-08"] { --fill-color: 111 148 107; } /* activity-preschool */
+  .passport-page-screentime [data-color="color-09"] { --fill-color:  58  57  53; } /* activity-screentime */
+  .passport-page-screentime [data-color="color-10"] { --fill-color: 210 235 117; } /* activity-snack */
+  .passport-page-screentime [data-color="color-11"] { --fill-color: 221 130 147; } /* activity-socialactivities */
 }
 @layer hidden-elements {
   .activity-select-section:not(.active) {
