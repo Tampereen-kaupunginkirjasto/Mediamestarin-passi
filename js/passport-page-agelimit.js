@@ -115,7 +115,7 @@ function customDragSortPredicate(item, event) {
   // and if not, then we return the initialGrid instead, to return the item.
   const itemId = item.getElement().getAttribute('data-id');
   const result = Muuri.ItemDrag.defaultSortPredicate(item, {
-    threshold: 10,
+    threshold: 1,
     action: 'move',
     migrateAction: 'move',
   });
