@@ -151,7 +151,8 @@
 }
 @layer print {
   @media print {
-    .activity-select {
+    .activity-select,
+    .screentime-page-illustration {
       display: none;
     }
   }

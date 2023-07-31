@@ -31,6 +31,7 @@ passportPageScreentime._passport = {
   },
 };
 function handleContinue() {
+  completedSound.currentTime = 0;
   completedSound.play();
   passportPageScreentime._passport.exit();
   completionPage._passport.enter();

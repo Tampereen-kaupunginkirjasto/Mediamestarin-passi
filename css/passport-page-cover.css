@@ -87,6 +87,7 @@
     font-size: 3rem;
     background: rgb(0 0 0 / 0);
     text-align: center;
+    text-transform: uppercase;
     outline: none !important;
     transform: translate(-0.4rem, -2.8rem);
   }

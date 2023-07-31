@@ -83,6 +83,9 @@
   .product-select > * {
     pointer-events: auto;
   }
+  [data-phase="select-product"] .character-head-container {
+    cursor: pointer;
+  }
   [data-phase="select-product"] .character-head {
     width: 20rem;
   }
@@ -129,6 +132,10 @@
     mask-size: contain;
     mask-repeat: no-repeat;
     background-color: #eee;
+    pointer-events: none;
+  }
+  .passport-page-marketing.published .argument {
+    /* Disallow dragging arguments in a published passport page */
     pointer-events: none;
   }
   [data-phase="select-arguments"] .product {
