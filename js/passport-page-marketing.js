@@ -164,6 +164,7 @@ argumentStickers.forEach(argumentSticker => {
 });
 function handlePublish() {
   argumentSelectPhaseContainer.setAttribute('data-selected-reaction', selectedReaction);
+  passportPageMarketing.classList.add('published');
   publishButton.style.display = 'none';
   publishSound.currentTime = 0;
   publishSound.play();

@@ -131,6 +131,10 @@
     background-color: #eee;
     pointer-events: none;
   }
+  .passport-page-marketing.published .argument {
+    /* Disallow dragging arguments in a published passport page */
+    pointer-events: none;
+  }
   [data-phase="select-arguments"] .product {
     position: absolute;
     top: 15rem;
