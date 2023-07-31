@@ -83,6 +83,9 @@
   .product-select > * {
     pointer-events: auto;
   }
+  [data-phase="select-product"] .character-head-container {
+    cursor: pointer;
+  }
   [data-phase="select-product"] .character-head {
     width: 20rem;
   }

@@ -6,6 +6,7 @@ const characterSelectPhaseContainer = document.querySelector('.marketing-page-ph
 const productSelectPhaseContainer = document.querySelector('.marketing-page-phase[data-phase="select-product"]');
 const argumentSelectPhaseContainer = document.querySelector('.marketing-page-phase[data-phase="select-arguments"]');
 const productSelectContainer = document.querySelector('.product-select');
+const returnToCharacterSelectButton = document.querySelector('[data-phase="select-product"] .character-head-container');
 const argumentSelectContainer = document.querySelector('.argument-select');
 const argumentStickers = Array.from(document.querySelectorAll('[data-phase="select-arguments"] .argument img'));
 const argumentStickerArea = document.querySelector('.marketing-phone-sticker-area');
@@ -22,6 +23,7 @@ let selectedReaction = '';
 
 new Hammer(continueButton).on('doubletap', handleContinue);
 characterSelectPhaseContainer.addEventListener('click', handleCharacterSelect);
+returnToCharacterSelectButton.addEventListener('click', handleReturnToCharacterSelect);
 productSelectContainer.addEventListener('click', handleProductSelect);
 colorSelectContainer.addEventListener('click', handleColorSelect);
 new Hammer(publishButton).on('doubletap', handlePublish);
@@ -63,6 +65,12 @@ function handleCharacterSelect(event) {
   argumentSelectPhaseContainer.setAttribute('data-selected-character', selectedCharacter);
   characterSelectPhaseContainer.classList.remove('active');
   productSelectPhaseContainer.classList.add('active');
+  clickSound.currentTime = 0;
+  clickSound.play();
+}
+function handleReturnToCharacterSelect() {
+  productSelectPhaseContainer.classList.remove('active');
+  characterSelectPhaseContainer.classList.add('active');
   clickSound.currentTime = 0;
   clickSound.play();
 }
