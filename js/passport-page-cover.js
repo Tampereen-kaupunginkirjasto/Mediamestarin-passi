@@ -64,6 +64,7 @@ passportPageCover._passport = {
   },
 };
 function handleContinue() {
+  successSound.currentTime = 0;
   successSound.play();
   passportPageCover._passport.exit();
   passportPageAgelimit._passport.enter();
@@ -113,6 +114,7 @@ function handleCapture(event) {
 }
 function capturePhoto() {
   playFlashEffect();
+  cameraSound.currentTime = 0;
   cameraSound.play();
   videoElement.pause();
   captureSnaposhotImageData();
@@ -261,6 +263,7 @@ function placeStamp() {
     stampImage.style.top = stampImageOriginalTop;
     stampImage.style.left = stampImageOriginalLeft;
     playStampErrorAnimation();
+    failureSound.currentTime = 0;
     failureSound.play();
     return;
   }

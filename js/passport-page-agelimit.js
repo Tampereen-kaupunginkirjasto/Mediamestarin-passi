@@ -200,6 +200,7 @@ function checkSuccess() {
   }
   if (isSuccess()) {
     continueButton.classList.add('active');
+    successSound.currentTime = 0;
     successSound.play();
   }
   else {

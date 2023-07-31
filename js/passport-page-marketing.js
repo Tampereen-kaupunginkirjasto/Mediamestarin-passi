@@ -42,6 +42,7 @@ passportPageMarketing._passport = {
   },
 };
 function handleContinue() {
+  successSound.currentTime = 0;
   successSound.play();
   passportPageMarketing._passport.exit();
   passportPageScreentime._passport.enter();
@@ -118,6 +119,7 @@ argumentStickers.forEach(argumentSticker => {
       clickSound.play();
     }
     else {
+      failureSound.currentTime = 0;
       failureSound.play();
       resetSticker();
     }
@@ -163,6 +165,7 @@ argumentStickers.forEach(argumentSticker => {
 function handlePublish() {
   argumentSelectPhaseContainer.setAttribute('data-selected-reaction', selectedReaction);
   publishButton.style.display = 'none';
+  publishSound.currentTime = 0;
   publishSound.play();
   setTimeout(() => {
     continueButton.classList.add('active');
