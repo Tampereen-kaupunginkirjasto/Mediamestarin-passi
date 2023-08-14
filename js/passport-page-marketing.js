@@ -80,12 +80,11 @@ function handleReturnToCharacterSelect() {
 //
 function handleProductSelect(event) {
   const productElement = event.target.closest('.product');
-  const productElementCopy = productElement.cloneNode(true);
   selectedReaction = productElement.getAttribute('data-reaction');
   argumentSelectPhaseContainer.setAttribute('data-selected-reaction', 'neutral');
-  productElementCopy.removeAttribute('data-character');
-  productElementCopy.removeAttribute('data-reaction');
-  argumentSelectPhaseContainer.appendChild(productElementCopy);
+  const phoneProductElement = argumentSelectPhaseContainer.querySelector(`.product[data-character="${selectedCharacter}"][data-reaction="${selectedReaction}"]`);
+  phoneProductElement.removeAttribute('data-character');
+  phoneProductElement.removeAttribute('data-reaction');
   productSelectPhaseContainer.classList.remove('active');
   argumentSelectPhaseContainer.classList.add('active');
   publishButton.style.display = '';

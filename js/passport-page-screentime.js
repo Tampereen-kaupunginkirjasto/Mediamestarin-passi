@@ -56,9 +56,6 @@ activityElements.forEach(activityElement => {
   activityElement.insertAdjacentHTML('afterbegin', '<div class="activity-highlight"></div>');
   checkSuccess();
 });
-selectedActivityElements.forEach(activityElement => {
-  activityElement.insertAdjacentHTML('afterbegin', '<div class="activity-highlight"></div>');
-});
 
 //
 // Time slot select

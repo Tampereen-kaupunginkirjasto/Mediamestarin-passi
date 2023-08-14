@@ -41,27 +41,27 @@
   }
   .activity-select .activity {
     --fill-color: 255 255 255;
-    --activity-icon-width: 19.5rem;
-    --activity-icon-height: 19.5rem;
+    --activity-icon-width: 13.5rem;
+    --activity-icon-height: 13.5rem;
     width: var(--activity-icon-width);
     height: var(--activity-icon-height);
-    margin: -2.5rem;
+    margin: 0.5rem;
+    cursor: pointer;
   }
   .passport-page-screentime .activity .activity-highlight {
     position: absolute;
     width: var(--activity-icon-width);
     height: var(--activity-icon-height);
-    border: calc(var(--activity-icon-width) / 3) solid rgb(var(--fill-color) / 1);
+    border: calc(var(--activity-icon-width) / 2) solid #666;
     border-radius: 50%;
-    transform: scale(.64) scale(1);
+    transform: scale(.95) scale(0);
     transition: transform 100ms ease;
-    cursor: pointer;
   }
-  .activity-select .activity .activity-highlight:hover {
-    transform: scale(.64) scale(1.1);
+  .activity-select .activity:hover .activity-highlight {
+    transform: scale(.95) scale(0.75);
   }
   .activity-select .activity.selected .activity-highlight {
-    transform: scale(.64) scale(1.2);
+    transform: scale(.95) scale(0.9);
   }
   .activity-select .activity img {
     position: relative;
@@ -74,22 +74,19 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-content: flex-start;
+    align-content: center;
     min-height: 22rem;
   }
   .selected-activities .activity {
     --fill-color: 255 255 255;
-    --activity-icon-width: 10rem;
-    --activity-icon-height: 10rem;
+    --activity-icon-width: 8.4rem;
+    --activity-icon-height: 8.4rem;
     width: var(--activity-icon-width);
     height: var(--activity-icon-height);
+    margin: 0.8rem;
   }
   .selected-activities.compact .activity {
-    margin-left: -0.7rem;
-    margin-right: -0.7rem;
-  }
-  .selected-activities .activity .activity-highlight {
-    transform: scale(.64) scale(1.3);
+    margin: 0.4rem 0.1rem 0.4rem 0.1rem;
   }
   .selected-activities .activity img {
     position: relative;
@@ -139,7 +136,7 @@
   .passport-page-screentime [data-color="color-06"] { --fill-color: 144 177 212; } /* activity-physicalactivities */
   .passport-page-screentime [data-color="color-07"] { --fill-color: 235 115  62; } /* activity-playtime */
   .passport-page-screentime [data-color="color-08"] { --fill-color: 111 148 107; } /* activity-preschool */
-  .passport-page-screentime [data-color="color-09"] { --fill-color:  58  57  53; } /* activity-screentime */
+  .passport-page-screentime [data-color="color-09"] { --fill-color: 234  77 255; } /* activity-screentime */
   .passport-page-screentime [data-color="color-10"] { --fill-color: 210 235 117; } /* activity-snack */
   .passport-page-screentime [data-color="color-11"] { --fill-color: 221 130 147; } /* activity-socialactivities */
 }
