@@ -15,8 +15,10 @@
     top: 5rem;
     width: 35rem;
     height: 61rem;
+    border-bottom-style: solid;
+    border-bottom-width: 61rem;
     pointer-events: none;
-    background-color: rgb(var(--fill-color) / 1);
+    border-color: rgb(var(--fill-color) / 1);
     z-index: 1;
   }
   .marketing-phone-sticker-area {
@@ -178,8 +180,8 @@
   .reaction-character-print {
     display: none;
     position: absolute;
-    right: 2rem;
-    top: 3rem;
+    right: 1.5rem;
+    bottom: 6rem;
     width: 18rem;
     z-index: 2;
   }
