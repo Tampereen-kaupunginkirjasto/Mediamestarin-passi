@@ -94,6 +94,9 @@
   .passport-name-input:focus {
     background: rgb(50 50 0 / .03);
   }
+  .passport-name-input:focus::placeholder {
+    color: transparent;
+  }
   /* Stamping */
   .passport-stamp-tool {
     position: absolute;
