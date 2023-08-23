@@ -103,8 +103,8 @@
     z-index: 2;
   }
   .time-slots .segment {
-    fill: rgb(208 179 148 / 0.5);
-    stroke: #f1dcc4;
+    fill: #e1b57f;
+    stroke: #eac69b;
     cursor: pointer;
   }
   .time-slots[data-color] .segment:hover {

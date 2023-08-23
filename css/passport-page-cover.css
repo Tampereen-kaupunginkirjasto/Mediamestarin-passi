@@ -19,14 +19,13 @@
     width: 100%;
     height: auto;
     /* aspect-ratio: 4 / 3; */
-    aspect-ratio: 1;
+    aspect-ratio: 0.94;
     transform:
       /* Position fine tuning */
-      translateX(-0.6rem) scale(98%)
+      translateX(-0.6rem) translateY(2.2rem) scale(109%)
       /* Front-facing camera mirroring */
       scaleX(-100%)
     ;
-    border-radius: 50%;
     overflow: hidden;
   }
   .passport-image-container > * {
@@ -89,14 +88,18 @@
     text-align: center;
     text-transform: uppercase;
     outline: none !important;
-    transform: translate(-0.4rem, -2.8rem);
+    transform: translate(-0.4rem, 1.5rem);
   }
   .passport-name-input:focus {
     background: rgb(50 50 0 / .03);
   }
+  .passport-name-input:focus::placeholder {
+    color: transparent;
+  }
   /* Stamping */
   .passport-stamp-tool {
     position: absolute;
+    display: flex;
     top: 50rem;
     left: calc(100% + 4rem);
     transition: opacity 200ms ease 500ms;
@@ -105,6 +108,7 @@
   .passport-stamp-tool img {
     width: 20rem;
     user-select: none;
+    transform: translateY(1.5rem);
   }
   .is-stamp-held .passport-stamp-tool {
     cursor: none;
@@ -118,15 +122,15 @@
     pointer-events: none;
   }
   .passport-stamp-image img {
-    width: 17rem;
+    width: 13.5rem;
   }
   .passport-stamp-area {
     opacity: 0;
     position: absolute;
     width: 49.2rem;
-    height: 18.3rem;
+    height: 15rem;
     left: 2rem;
-    top: 54rem;
+    top: 57.5rem;
     border: 0.25rem dashed rgb(0 0 0 / .4);
     box-shadow: 0 0 0 100vw rgb(0 0 0 / .2);
     transition: opacity 200ms ease;
