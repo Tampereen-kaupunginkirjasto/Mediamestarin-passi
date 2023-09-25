@@ -53,7 +53,6 @@ activityElements.forEach(activityElement => {
     activityElement.classList.add('selected');
     timeSlotsContainer.setAttribute('data-color', selectedColor);
   }
-  activityElement.insertAdjacentHTML('afterbegin', '<div class="activity-highlight"></div>');
   checkSuccess();
 });
 
