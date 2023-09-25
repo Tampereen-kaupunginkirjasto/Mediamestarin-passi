@@ -83,12 +83,12 @@
     padding: 0.5rem;
     border: 0;
     color: #555;
-    font-size: 3rem;
+    font-size: 3.6rem;
     background: rgb(0 0 0 / 0);
     text-align: center;
     text-transform: uppercase;
     outline: none !important;
-    transform: translate(-0.4rem, 1.5rem);
+    transform: translate(-0.4rem, 4rem);
   }
   .passport-name-input:focus {
     background: rgb(50 50 0 / .03);
@@ -130,7 +130,7 @@
     width: 49.2rem;
     height: 15rem;
     left: 2rem;
-    top: 57.5rem;
+    top: 58.2rem;
     border: 0.25rem dashed rgb(0 0 0 / .4);
     box-shadow: 0 0 0 100vw rgb(0 0 0 / .2);
     transition: opacity 200ms ease;
