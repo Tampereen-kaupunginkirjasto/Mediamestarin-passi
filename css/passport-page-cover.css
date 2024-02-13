@@ -117,11 +117,14 @@
     position: absolute;
     top: 0;
     left: 0;
-    transform: translate(-25%, -75%);
+    transform: translate(-3.4rem, -10.3rem);
     opacity: 0;
     pointer-events: none;
   }
   .passport-stamp-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 13.5rem;
   }
   .passport-stamp-area {
