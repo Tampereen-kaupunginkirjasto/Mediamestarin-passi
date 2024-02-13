@@ -237,7 +237,7 @@ function handleStampClick(event) {
     placeStamp();
   }
   else {
-    pickUpStamp();
+    pickUpStamp(event);
   }
 }
 function placeStamp() {
@@ -248,8 +248,8 @@ function placeStamp() {
   const left = stampToolPosition.left - containerDimensions.left;
   const stampImageOriginalTop = stampImage.style.top;
   const stampImageOriginalLeft = stampImage.style.left;
-  stampImage.style.top = `${top / containerDimensions.height * 100}%`;
-  stampImage.style.left = `${left / containerDimensions.width * 100}%`;
+  stampImage.style.top = `${convertPixelsToRem(top)}rem`;
+  stampImage.style.left = `${convertPixelsToRem(left)}rem`;
   // Validate stamp position
   const stampImagePosition = stampImage.getBoundingClientRect();
   const stampAreaPosition = stampArea.getBoundingClientRect();
@@ -277,8 +277,8 @@ function placeStamp() {
     + Math.max(stampAreaPosition.left - stampImagePosition.left, 0)
     + Math.min(stampAreaPosition.right - stampImagePosition.right, 0)
   );
-  stampImage.style.top = `${clampedTop / containerDimensions.height * 100}%`;
-  stampImage.style.left = `${clampedLeft / containerDimensions.width * 100}%`;
+  stampImage.style.top = `${convertPixelsToRem(clampedTop)}rem`;
+  stampImage.style.left = `${convertPixelsToRem(clampedLeft)}rem`;
   stampImage.style.opacity = '1';
   isStampHeld = false;
   passportPageCover.classList.remove('is-stamp-held');
@@ -293,7 +293,7 @@ function placeStamp() {
   successCriteria.isStamped = true;
   checkSuccess();
 }
-function pickUpStamp() {
+function pickUpStamp(event) {
   isStampHeld = true;
   passportPageCover.classList.add('is-stamp-held');
   document.body.style.cursor = 'none';
@@ -345,6 +345,10 @@ function playStampErrorAnimation() {
     },
   );
   return stampErrorAnimation.finished;
+}
+function convertPixelsToRem(px) {
+  const remBase = parseFloat(getComputedStyle(document.documentElement).fontSize);
+  return px * (1 / remBase);
 }
 
 //
